@@ -1,0 +1,12 @@
+@import './Sidebar/styles.module.scss';
+@import './Nav/styles.module.scss';
+@import './Canvas/styles.module.scss';
+@import './Overlay/styles.module.scss';
+
+.NavPush {
+  position: relative;
+}
+
+.NavPush--open {
+  overflow-x: hidden;
+}

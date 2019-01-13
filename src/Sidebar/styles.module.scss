@@ -1,0 +1,7 @@
+.Sidebar {
+  position: fixed;
+  background: white;
+  color: black;
+  transition: transform $transitionDuration ease;
+  z-index: 10;
+}

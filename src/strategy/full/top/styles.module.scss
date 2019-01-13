@@ -1,0 +1,13 @@
+@import '../styles.module.scss';
+
+.Sidebar--top {
+  top: $navHeight;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  transition: bottom $transitionDuration ease;
+}
+
+.Sidebar--top.Sidebar--open {
+  bottom: 0;
+}

@@ -1,0 +1,20 @@
+@import '../styles.module.scss';
+
+.Sidebar--right {
+  top: 0;
+  right: 0;
+  width: $width;
+  height: calc(100% + 60px);
+}
+
+.Canvas--right.Canvas--open {
+  transform: translate3d(-$width, 0, 0);
+}
+
+.Nav--right.Nav--open {
+  transform: translate3d(-$width, 0, 0);
+}
+
+.Overlay--right.Overlay--open {
+  transform: translate3d(-$width, 0, 0);
+}

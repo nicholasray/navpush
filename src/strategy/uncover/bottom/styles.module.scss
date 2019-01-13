@@ -1,0 +1,10 @@
+@import '../styles.module.scss';
+
+.Sidebar--bottom {
+  bottom: 0;
+  width: 100%;
+}
+
+.Sidebar--bottom.Sidebar--open {
+  transform: translate3d(0, 0, 0);
+}

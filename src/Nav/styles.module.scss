@@ -1,0 +1,24 @@
+@import 'sass-rem/_rem.scss';
+
+.Nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  transition: transform $transitionDuration ease;
+  z-index: 1;
+}
+
+.Nav__items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: rem(50px);
+  font-size: rem(22px);
+  font-weight: bold;
+}
+
+.Nav__hamburger {
+  cursor: pointer;
+}

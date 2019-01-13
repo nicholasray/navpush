@@ -1,0 +1,11 @@
+@import '../styles.module.scss';
+
+.Sidebar--top {
+  top: 0;
+  transform: translate3d(0, -100%, 0);
+  width: 100%;
+}
+
+.Sidebar--top.Sidebar--open {
+  transform: translate3d(0, 0, 0);
+}

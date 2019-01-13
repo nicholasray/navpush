@@ -1,0 +1,14 @@
+$navHeight: 50px;
+$width: 250px;
+$transitionDuration: 0.3s;
+
+@import '../../styles.module.scss';
+
+.Nav {
+  z-index: 20;
+}
+
+.Sidebar {
+  z-index: 10;
+  overflow: hidden;
+}
