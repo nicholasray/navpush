@@ -1,10 +1,11 @@
-import setup from '../../index.js';
+import top from './top';
+import bottom from './bottom';
+import left from './left';
+import right from './right';
 
-const overlay = {
-  defaults: {
-    direction: 'right'
-  },
-  directions: ['top', 'bottom', 'left', 'right']
+export default {
+  top,
+  bottom,
+  left,
+  right
 };
-
-export default setup(overlay);

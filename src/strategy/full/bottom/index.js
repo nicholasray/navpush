@@ -1,5 +1,5 @@
-import setup from '../../../Factory'
+import setup from '../../../Factory';
 
 export default setup({
   direction: 'bottom'
-})
+});

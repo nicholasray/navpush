@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Sidebar from "../Sidebar";
-import Nav from "../Nav";
-import Canvas from "../Canvas";
-import Overlay from "../Overlay";
-import cx from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Sidebar from '../Sidebar';
+import Nav from '../Nav';
+import Canvas from '../Canvas';
+import Overlay from '../Overlay';
+import cx from 'classnames';
 
 const factory = strategy => {
   if (!strategy.direction) {
@@ -57,7 +57,7 @@ const factory = strategy => {
         ref: this.sidebarRef,
         classes: [
           theme[`Sidebar--${strategy.direction}`],
-          { [theme["Sidebar--open"]]: this.state.isOpen }
+          { [theme['Sidebar--open']]: this.state.isOpen }
         ],
         styles: strategy.sidebar && strategy.sidebar.getStyles(strategyParams),
         theme
@@ -69,7 +69,7 @@ const factory = strategy => {
         ref: this.navRef,
         classes: [
           theme[`Nav--${strategy.direction}`],
-          { [theme["Nav--open"]]: this.state.isOpen }
+          { [theme['Nav--open']]: this.state.isOpen }
         ],
         styles: strategy.nav && strategy.nav.getStyles(strategyParams),
         theme
@@ -78,7 +78,7 @@ const factory = strategy => {
       return (
         <div
           className={cx(theme.NavPush, {
-            [theme["NavPush--open"]]: this.state.isOpen
+            [theme['NavPush--open']]: this.state.isOpen
           })}
         >
           {clonedNav}
@@ -88,7 +88,7 @@ const factory = strategy => {
               onClick={this.handleCanvasClick}
               classes={[
                 theme[`Overlay--${strategy.direction}`],
-                { [theme["Overlay--open"]]: this.state.isOpen }
+                { [theme['Overlay--open']]: this.state.isOpen }
               ]}
               styles={
                 strategy.overlay && strategy.overlay.getStyles(strategyParams)
@@ -101,7 +101,7 @@ const factory = strategy => {
             onClick={this.handleCanvasClick}
             classes={[
               theme[`Canvas--${strategy.direction}`],
-              { [theme["Canvas--open"]]: this.state.isOpen }
+              { [theme['Canvas--open']]: this.state.isOpen }
             ]}
             styles={
               strategy.canvas && strategy.canvas.getStyles(strategyParams)

@@ -1,4 +1,4 @@
-import setup from '../../../index.js';
+import setup from '../../../Factory';
 
 export default setup({
   direction: 'right'
