@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'navpush'
+    title: 'navpush',
+    description: 'A versatile navigation bar',
+    author: 'Nicholas Ray'
   },
   plugins: [
     {

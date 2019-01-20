@@ -1,20 +1,28 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
-import Layout from '../components/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+import Layout from '../components/Layout';
+import SEO from '../components/Seo';
+import NavPush from 'navpush/src/strategy/push/right';
+import theme from 'navpush/src/strategy/push/right/styles.module.scss';
 
 const IndexPage = () => (
   <Layout>
-    <SEO title='Home' keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to='/page-2/'>Go to page 2</Link>
+    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <NavPush
+      dim
+      theme={theme}
+      nav={<NavPush.Nav>navpush</NavPush.Nav>}
+      sidebar={<NavPush.Sidebar>Hello</NavPush.Sidebar>}
+    >
+      <section className="hero is-primary is-fullheight">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title">Cafe CS</h1>
+            <h2>A catchy line</h2>
+          </div>
+        </div>
+      </section>
+    </NavPush>
   </Layout>
 );
 

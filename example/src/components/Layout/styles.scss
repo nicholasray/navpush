@@ -1,0 +1,42 @@
+// Set your brand colors
+$purple: #8a4d76;
+$pink: #fa7c91;
+$brown: #757763;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Update Bulma's global variables
+$family-sans-serif: 'Roboto', sans-serif;
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$link: $pink;
+
+// Update some of Bulma's component variables
+$primary: #544f4a;
+$body-background-color: $beige-lighter;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+$family-heading: 'Aleo';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $family-heading;
+}
+
+#___gatsby {
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@import 'bulma/sass/utilities/_all.sass';
+@import 'bulma/sass/base/_all.sass';
+@import 'bulma/sass/elements/title.sass';
+@import 'bulma/sass/layout/hero.sass';
+@import 'bulma/sass/elements/container.sass';
