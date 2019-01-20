@@ -1,11 +1,6 @@
-import full from './strategy/full';
-import overlay from './strategy/overlay';
-import push from './strategy/push';
-import uncover from './strategy/uncover';
+import Full from './strategy/full';
+import Overlay from './strategy/overlay';
+import Push from './strategy/push';
+import Uncover from './strategy/uncover';
 
-export default {
-  full,
-  overlay,
-  push,
-  uncover
-};
+export { Full, Overlay, Push, Uncover };

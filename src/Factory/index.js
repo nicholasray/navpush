@@ -7,36 +7,36 @@ import Overlay from '../Overlay';
 import cx from 'classnames';
 
 const factory = strategy => {
-  if (!strategy.direction) {
-    throw new Error("Strategy object must have 'direction' property");
+  if ( !strategy.direction ) {
+    throw new Error( "Strategy object must have 'direction' property" );
   }
 
   class NavPush extends React.Component {
-    constructor(props) {
-      super(props);
+    constructor( props ) {
+      super( props );
 
       this.state = {
         isOpen: false
       };
 
-      this.handleBurgerClick = this.handleBurgerClick.bind(this);
-      this.handleCanvasClick = this.handleCanvasClick.bind(this);
+      this.handleToggle = this.handleToggle.bind( this );
+      this.handleCanvasClick = this.handleCanvasClick.bind( this );
       this.sidebarRef = React.createRef();
       this.navRef = React.createRef();
     }
 
     toggle() {
-      this.setState({
+      this.setState( {
         isOpen: !this.state.isOpen
-      });
+      } );
     }
 
-    handleBurgerClick() {
+    handleToggle() {
       this.toggle();
     }
 
     handleCanvasClick() {
-      if (!this.state.isOpen) {
+      if ( !this.state.isOpen ) {
         return;
       }
 
@@ -51,62 +51,61 @@ const factory = strategy => {
         props: this.props,
         isOpen: this.state.isOpen
       };
-      const clonedSidebar = React.cloneElement(this.props.sidebar, {
-        isOpen: this.state.isOpen,
-        animation: this.props.animation,
-        ref: this.sidebarRef,
-        classes: [
-          theme[`Sidebar--${strategy.direction}`],
-          { [theme['Sidebar--open']]: this.state.isOpen }
-        ],
-        styles: strategy.sidebar && strategy.sidebar.getStyles(strategyParams),
-        theme
-      });
-      const clonedNav = React.cloneElement(this.props.nav, {
-        isBurgerOpen: this.state.isOpen,
-        onBurgerClick: this.handleBurgerClick,
-        animation: this.props.animation,
-        ref: this.navRef,
-        classes: [
-          theme[`Nav--${strategy.direction}`],
-          { [theme['Nav--open']]: this.state.isOpen }
-        ],
-        styles: strategy.nav && strategy.nav.getStyles(strategyParams),
-        theme
-      });
 
       return (
         <div
-          className={cx(theme.NavPush, {
+          className={ cx( theme.NavPush, {
             [theme['NavPush--open']]: this.state.isOpen
-          })}
+          } ) }
         >
-          {clonedNav}
-          {clonedSidebar}
+          <Nav
+            ref={ this.navRef }
+            classes={ [
+              theme[`Nav--${strategy.direction}`],
+              { [theme['Nav--open']]: this.state.isOpen }
+            ] }
+            styles={ strategy.nav && strategy.nav.getStyles( strategyParams ) }
+            theme={ theme }
+          >
+            {this.props.nav( this.state.isOpen, this.handleToggle )}
+          </Nav>
+          <Sidebar
+            ref={ this.sidebarRef }
+            classes={ [
+              theme[`Sidebar--${strategy.direction}`],
+              { [theme['Sidebar--open']]: this.state.isOpen }
+            ] }
+            styles={
+              strategy.sidebar && strategy.sidebar.getStyles( strategyParams )
+            }
+            theme={ theme }
+          >
+            {this.props.sidebar}
+          </Sidebar>
           {this.props.dim && (
             <Overlay
-              onClick={this.handleCanvasClick}
-              classes={[
+              onClick={ this.handleCanvasClick }
+              classes={ [
                 theme[`Overlay--${strategy.direction}`],
                 { [theme['Overlay--open']]: this.state.isOpen }
-              ]}
+              ] }
               styles={
-                strategy.overlay && strategy.overlay.getStyles(strategyParams)
+                strategy.overlay && strategy.overlay.getStyles( strategyParams )
               }
-              theme={theme}
-              isActive={this.state.isOpen}
+              theme={ theme }
+              isActive={ this.state.isOpen }
             />
           )}
           <Canvas
-            onClick={this.handleCanvasClick}
-            classes={[
+            onClick={ this.handleCanvasClick }
+            classes={ [
               theme[`Canvas--${strategy.direction}`],
               { [theme['Canvas--open']]: this.state.isOpen }
-            ]}
+            ] }
             styles={
-              strategy.canvas && strategy.canvas.getStyles(strategyParams)
+              strategy.canvas && strategy.canvas.getStyles( strategyParams )
             }
-            theme={theme}
+            theme={ theme }
           >
             {this.props.children}
           </Canvas>
@@ -115,9 +114,6 @@ const factory = strategy => {
     }
   }
 
-  NavPush.Sidebar = Sidebar;
-  NavPush.Nav = Nav;
-
   NavPush.propTypes = {
     dim: PropTypes.bool,
     nav: PropTypes.element.isRequired,
@@ -125,12 +121,9 @@ const factory = strategy => {
     theme: PropTypes.object.isRequired
   };
 
-  NavPush.defaultProps = Object.assign(
-    {
-      dim: false
-    },
-    strategy.defaults
-  );
+  NavPush.defaultProps = {
+    dim: false
+  };
 
   return NavPush;
 };
