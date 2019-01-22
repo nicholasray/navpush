@@ -5,6 +5,7 @@ module.exports = {
     author: 'Nicholas Ray'
   },
   plugins: [
+    'gatsby-plugin-webpack-size',
     {
       resolve: `gatsby-plugin-sass`,
       options: {
