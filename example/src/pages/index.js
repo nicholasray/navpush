@@ -2,15 +2,16 @@ import React from 'react';
 
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
-import { OverlayLeft } from 'navpush';
-import theme from 'navpush/src/strategy/overlay/left/styles.module.scss';
+import { PushRight } from 'navpush';
+import theme from 'navpush/src/strategy/push/right/styles.module.scss';
 import styles from './styles.module.scss';
-import HamburgerMenu from 'react-hamburger-menu';
+import Hamburger from 'navpush/src/Hamburger';
+import HamburgerTheme from 'navpush/src/Hamburger/styles.module.scss';
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={ [ `gatsby`, `application`, `react` ] } />
-    <OverlayLeft
+    <PushRight
       dim
       theme={ theme }
       nav={ (isOpen, toggle) => (
@@ -18,15 +19,7 @@ const IndexPage = () => (
           <div className={ styles.Nav__items }>
             navpush
             <div className={ styles.Nav__hamburger }>
-              <HamburgerMenu
-                animationDuration={ 0.3 }
-                height={ 20 }
-                width={ 30 }
-                isOpen={ isOpen }
-                menuClicked={ toggle }
-                strokeWidth={ 4 }
-                color="white"
-              />
+              <Hamburger onClick={ toggle } theme={ HamburgerTheme } />
             </div>
           </div>
         </div>
@@ -41,7 +34,7 @@ const IndexPage = () => (
           </div>
         </div>
       </section>
-    </OverlayLeft>
+    </PushRight>
   </Layout>
 );
 

@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 
 class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
 
     this.ref = React.createRef();
   }
@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
     const { theme, children, classes, styles } = this.props;
 
     return (
-      <div ref={this.ref} style={styles} className={cx(theme.Sidebar, classes)}>
+      <div ref={ this.ref } style={ styles } className={ cx( theme.Sidebar, classes ) }>
         {children}
       </div>
     );

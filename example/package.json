@@ -21,7 +21,6 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-hamburger-menu": "^1.1.1",
     "react-helmet": "^5.2.0",
     "typeface-aleo": "0.0.44",
     "typeface-roboto": "0.0.54"

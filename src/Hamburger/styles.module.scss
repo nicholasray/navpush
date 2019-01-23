@@ -1,0 +1,33 @@
+$color: #fff !default;
+
+.Hamburger {
+  position: relative;
+  width: 30px;
+  height: 24px;
+}
+
+.Hamburger__line {
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: $color;
+}
+
+.Hamburger__top {
+  @extend .Hamburger__line;
+
+  top: 0;
+}
+
+.Hamburger__middle {
+  @extend .Hamburger__line;
+
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.Hamburger__bottom {
+  @extend .Hamburger__line;
+
+  bottom: 0;
+}

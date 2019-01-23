@@ -19,7 +19,7 @@ const factory = strategy => {
         isOpen: false
       };
 
-      this.handleToggle = this.handleToggle.bind( this );
+      this.toggle = this.toggle.bind( this );
       this.handleCanvasClick = this.handleCanvasClick.bind( this );
       this.sidebarRef = React.createRef();
       this.navRef = React.createRef();
@@ -29,10 +29,6 @@ const factory = strategy => {
       this.setState( {
         isOpen: !this.state.isOpen
       } );
-    }
-
-    handleToggle() {
-      this.toggle();
     }
 
     handleCanvasClick() {
@@ -67,7 +63,7 @@ const factory = strategy => {
             styles={ strategy.nav && strategy.nav.getStyles( strategyParams ) }
             theme={ theme }
           >
-            {this.props.nav( this.state.isOpen, this.handleToggle )}
+            {this.props.nav( this.state.isOpen, this.toggle )}
           </Nav>
           <Sidebar
             ref={ this.sidebarRef }
@@ -80,7 +76,7 @@ const factory = strategy => {
             }
             theme={ theme }
           >
-            {this.props.sidebar}
+            {this.props.sidebar( this.state.isOpen, this.toggle )}
           </Sidebar>
           {this.props.dim && (
             <Overlay
