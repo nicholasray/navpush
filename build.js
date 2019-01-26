@@ -13,41 +13,42 @@ const cssnano = require( 'cssnano' );
 const stylesheets = glob.sync( 'src/strategy/*/*/styles.module.scss' );
 const promises = [];
 
-function writeFile( outFile, content ) {
-  return fs.promises.mkdir( path.dirname( outFile ) ).then(
-    () => {
-      fs.promises.writeFile( outFile, content );
-    },
-    err => {
-      if ( err && err.code === 'EEXIST' ) {
-        return fs.promises.writeFile( outFile, content );
-      }
-
-      throw err;
+async function writeFile( outFile, content ) {
+  try {
+    await fs.promises.mkdir( path.dirname( outFile ) );
+  } catch ( err ) {
+    if ( err && err.code === 'EEXIST' ) {
+      return fs.promises.writeFile( outFile, content );
     }
-  );
+
+    throw err;
+  }
+
+  return fs.promises.writeFile( outFile, content );
 }
 
-function buildCss( input, outFile ) {
+async function buildCss( input, outFile ) {
   outFile = outFile + '.min.css';
 
-  return fs.promises.readFile( input ).then( css => {
-    return postcss( [ atImport(), precss(), autoprefixer(), cssnano() ] )
-      .process( css, { from: input, to: outFile } )
-      .then( result => {
-        return writeFile( outFile, result.css );
-      } );
-  } );
+  const css = await fs.promises.readFile( input );
+  const result = await postcss( [
+    atImport(),
+    precss(),
+    autoprefixer(),
+    cssnano()
+  ] ).process( css, { from: input, to: outFile } );
+
+  return writeFile( outFile, result.css );
 }
 
-function buildScss( input, outFile ) {
+async function buildScss( input, outFile ) {
   outFile = outFile + '.scss';
 
   const bundler = new Bundler( undefined, __dirname );
   // Relative file path to project directory path.
-  return bundler.Bundle( input ).then( result => {
-    return writeFile( outFile, result.bundledContent );
-  } );
+  const result = await bundler.Bundle( input );
+
+  return writeFile( outFile, result.bundledContent );
 }
 
 stylesheets.forEach( stylesheet => {
