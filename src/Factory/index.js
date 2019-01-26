@@ -112,8 +112,8 @@ const factory = strategy => {
 
   NavPush.propTypes = {
     dim: PropTypes.bool,
-    nav: PropTypes.element.isRequired,
-    sidebar: PropTypes.element.isRequired,
+    nav: PropTypes.func.isRequired,
+    sidebar: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired
   };
 

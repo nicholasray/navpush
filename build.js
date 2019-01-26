@@ -7,11 +7,19 @@ const pascal = require( 'camelcase' );
 const { Bundler } = require( 'scss-bundle' );
 const atImport = require( 'postcss-easy-import' );
 const precss = require( 'precss' );
+const namespace = require( 'postcss-namespace' );
 const autoprefixer = require( 'autoprefixer' );
 const cssnano = require( 'cssnano' );
 const postcss = require( 'postcss' );
 const stylesheets = glob.sync( 'src/strategy/*/*/styles.module.scss' );
 const promises = [];
+
+// add @prefix rule to top of css ast so that postcss-namespace can work
+const addPrefixRule = postcss.plugin( 'postcss-add-prefix-rule', opts => {
+  return root => {
+    root.nodes[0].before( `@prefix ${opts.prefix}` );
+  };
+} );
 
 async function writeFile( outFile, content ) {
   try {
@@ -34,6 +42,8 @@ async function buildCss( input, outFile ) {
   const result = await postcss( [
     atImport(),
     precss(),
+    addPrefixRule( { prefix: 'NP' } ),
+    namespace( { token: '__' } ),
     autoprefixer(),
     cssnano()
   ] ).process( css, { from: input, to: outFile } );
@@ -42,7 +52,7 @@ async function buildCss( input, outFile ) {
 }
 
 async function buildScss( input, outFile ) {
-  outFile = outFile + '.scss';
+  outFile = outFile + '.module.scss';
 
   const bundler = new Bundler( undefined, __dirname );
   // Relative file path to project directory path.

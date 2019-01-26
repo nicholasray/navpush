@@ -2,8 +2,8 @@ import React from 'react';
 
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
-import { PushRight } from 'navpush';
-import theme from 'navpush/src/strategy/push/right/styles.module.scss';
+import { OverlayLeft as NavPush } from 'navpush';
+import theme from 'navpush/dist/styles/OverlayLeft.module.scss';
 import styles from './styles.module.scss';
 import Hamburger from 'navpush/src/Hamburger';
 import HamburgerTheme from 'navpush/src/Hamburger/styles.module.scss';
@@ -11,7 +11,7 @@ import HamburgerTheme from 'navpush/src/Hamburger/styles.module.scss';
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={ [ `gatsby`, `application`, `react` ] } />
-    <PushRight
+    <NavPush
       dim
       theme={ theme }
       nav={ (isOpen, toggle) => (
@@ -34,7 +34,7 @@ const IndexPage = () => (
           </div>
         </div>
       </section>
-    </PushRight>
+    </NavPush>
   </Layout>
 );
 
