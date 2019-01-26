@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 class Sidebar extends React.Component {
@@ -26,5 +27,18 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  theme: PropTypes.object,
+  children: PropTypes.element,
+  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
+  styles: PropTypes.object
+};
+
+Sidebar.defaultProps = {
+  theme: {
+    Sidebar: 'NP-Sidebar'
+  }
+};
 
 export default Sidebar;

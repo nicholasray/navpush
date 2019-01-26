@@ -43,7 +43,7 @@ async function buildCss( input, outFile ) {
     atImport(),
     precss(),
     addPrefixRule( { prefix: 'NP' } ),
-    namespace( { token: '__' } ),
+    namespace( { token: '-' } ),
     autoprefixer(),
     cssnano()
   ] ).process( css, { from: input, to: outFile } );

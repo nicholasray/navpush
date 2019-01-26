@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Hamburger( { theme, onClick } ) {
   return (
@@ -9,5 +10,18 @@ function Hamburger( { theme, onClick } ) {
     </div>
   );
 }
+
+Hamburger.propTypes = {
+  theme: PropTypes.object,
+  onClick: PropTypes.func
+};
+
+Hamburger.defaultProps = {
+  theme: {
+    Hamburger__top: 'NP-Hamburger__top',
+    Hamburger__middle: 'NP-Hamburger__middle',
+    Hamburger__bottom: 'NP-Hamburger__bottom'
+  }
+};
 
 export default Hamburger;

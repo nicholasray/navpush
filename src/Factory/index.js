@@ -51,15 +51,15 @@ const factory = strategy => {
       return (
         <div
           className={ cx( theme.NavPush, {
-            [theme['NavPush--open']]: this.state.isOpen
+            [theme['NavPush--open']]:
+              theme['NavPush--open'] && this.state.isOpen
           } ) }
         >
           <Nav
             ref={ this.navRef }
-            classes={ [
-              theme[`Nav--${strategy.direction}`],
-              { [theme['Nav--open']]: this.state.isOpen }
-            ] }
+            classes={ cx( theme[`Nav--${strategy.direction}`], {
+              [theme['Nav--open']]: theme['Nav--open'] && this.state.isOpen
+            } ) }
             styles={ strategy.nav && strategy.nav.getStyles( strategyParams ) }
             theme={ theme }
           >
@@ -67,10 +67,10 @@ const factory = strategy => {
           </Nav>
           <Sidebar
             ref={ this.sidebarRef }
-            classes={ [
-              theme[`Sidebar--${strategy.direction}`],
-              { [theme['Sidebar--open']]: this.state.isOpen }
-            ] }
+            classes={ cx( theme[`Sidebar--${strategy.direction}`], {
+              [theme['Sidebar--open']]:
+                theme['Sidebar--open'] && this.state.isOpen
+            } ) }
             styles={
               strategy.sidebar && strategy.sidebar.getStyles( strategyParams )
             }
@@ -81,10 +81,10 @@ const factory = strategy => {
           {this.props.dim && (
             <Overlay
               onClick={ this.handleCanvasClick }
-              classes={ [
-                theme[`Overlay--${strategy.direction}`],
-                { [theme['Overlay--open']]: this.state.isOpen }
-              ] }
+              classes={ cx( theme[`Overlay--${strategy.direction}`], {
+                [theme['Overlay--open']]:
+                  theme['Overlay--open'] && this.state.isOpen
+              } ) }
               styles={
                 strategy.overlay && strategy.overlay.getStyles( strategyParams )
               }
@@ -94,10 +94,10 @@ const factory = strategy => {
           )}
           <Canvas
             onClick={ this.handleCanvasClick }
-            classes={ [
-              theme[`Canvas--${strategy.direction}`],
-              { [theme['Canvas--open']]: this.state.isOpen }
-            ] }
+            classes={ cx( theme[`Canvas--${strategy.direction}`], {
+              [theme['Canvas--open']]:
+                theme['Canvas--open'] && this.state.isOpen
+            } ) }
             styles={
               strategy.canvas && strategy.canvas.getStyles( strategyParams )
             }
@@ -118,7 +118,25 @@ const factory = strategy => {
   };
 
   NavPush.defaultProps = {
-    dim: false
+    dim: false,
+    theme: Object.assign(
+      {
+        NavPush: 'NP-NavPush',
+        'NavPush--open': 'NP-NavPush--open',
+        [`Nav--${strategy.direction}`]: `NP-Nav--${strategy.direction}`,
+        'Nav--open': 'NP-Nav--open',
+        [`Sidebar--${strategy.direction}`]: `NP-Sidebar--${strategy.direction}`,
+        [`Sidebar--open`]: `NP-Sidebar--open`,
+        [`Overlay--${strategy.direction}`]: `NP-Overlay--${strategy.direction}`,
+        'Overlay--open': `NP-Overlay--open`,
+        [`Canvas--${strategy.direction}`]: `NP-Canvas--${strategy.direction}`,
+        'Canvas--open': 'NP-Canvas--open'
+      },
+      Nav.defaultProps.theme,
+      Sidebar.defaultProps.theme,
+      Overlay.defaultProps.theme,
+      Canvas.defaultProps.theme
+    )
   };
 
   return NavPush;

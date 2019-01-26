@@ -1,5 +1,5 @@
 import setup from '../../../Factory';
 
-export default setup({
+export default setup( {
   direction: 'left'
-});
+} );

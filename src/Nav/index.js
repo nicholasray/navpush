@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 class Nav extends React.Component {
@@ -26,5 +27,18 @@ class Nav extends React.Component {
     );
   }
 }
+
+Nav.propTypes = {
+  theme: PropTypes.object,
+  styles: PropTypes.object,
+  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
+  children: PropTypes.element
+};
+
+Nav.defaultProps = {
+  theme: {
+    Nav: 'NP-Nav'
+  }
+};
 
 export default Nav;
