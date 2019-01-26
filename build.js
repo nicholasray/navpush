@@ -6,10 +6,10 @@ const path = require( 'path' );
 const pascal = require( 'camelcase' );
 const { Bundler } = require( 'scss-bundle' );
 const atImport = require( 'postcss-easy-import' );
-const postcss = require( 'postcss' );
-const autoprefixer = require( 'autoprefixer' );
 const precss = require( 'precss' );
+const autoprefixer = require( 'autoprefixer' );
 const cssnano = require( 'cssnano' );
+const postcss = require( 'postcss' );
 const stylesheets = glob.sync( 'src/strategy/*/*/styles.module.scss' );
 const promises = [];
 
