@@ -73,6 +73,7 @@ class Dashboard extends React.Component {
     };
 
     this.handleNameClick = this.handleNameClick.bind(this);
+    this.handleDirectionClick = this.handleDirectionClick.bind(this);
   }
 
   handleNameClick(name) {
@@ -80,6 +81,14 @@ class Dashboard extends React.Component {
 
     this.setState({
       name
+    });
+  }
+
+  handleDirectionClick(direction) {
+    console.log('direction changing to ' + direction);
+
+    this.setState({
+      direction
     });
   }
 
@@ -92,6 +101,23 @@ class Dashboard extends React.Component {
           key={ key }
           onClick={ this.handleNameClick }
           isActive={ this.state.name === key }
+          label={ key }
+        />
+      );
+    }
+
+    return buttons;
+  }
+
+  renderDirectionOptions() {
+    const buttons = [];
+
+    for (const key of Object.keys(this.components[this.state.name])) {
+      buttons.push(
+        <Button
+          key={ key }
+          onClick={ this.handleDirectionClick }
+          isActive={ this.state.direction === key }
           label={ key }
         />
       );
@@ -123,7 +149,10 @@ class Dashboard extends React.Component {
       >
         <section className="hero is-primary is-fullheight">
           <div className="hero-body">
-            <div className="container">{this.renderNameOptions()}</div>
+            <div className="container">
+              <div className="buttons">{this.renderNameOptions()}</div>
+              <div className="buttons">{this.renderDirectionOptions()}</div>
+            </div>
           </div>
         </section>
       </NavPush>
