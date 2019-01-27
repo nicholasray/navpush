@@ -2,11 +2,10 @@ import React from 'react';
 
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
-import { OverlayLeft as NavPush } from 'navpush';
+import { OverlayLeft as NavPush, Hamburger } from 'navpush';
 import theme from 'navpush/dist/styles/OverlayLeft.module.scss';
 import styles from './styles.module.scss';
-import Hamburger from 'navpush/src/Hamburger';
-import HamburgerTheme from 'navpush/src/Hamburger/styles.module.scss';
+import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
 
 const IndexPage = () => (
   <Layout>
