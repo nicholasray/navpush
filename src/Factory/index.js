@@ -110,6 +110,8 @@ const factory = strategy => {
     }
   }
 
+  NavPush.direction = strategy.direction;
+
   NavPush.propTypes = {
     dim: PropTypes.bool,
     nav: PropTypes.func.isRequired,

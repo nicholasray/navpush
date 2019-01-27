@@ -1,0 +1,134 @@
+import React from 'react';
+import * as navpush from 'navpush';
+import OverlayLeftTheme from 'navpush/dist/styles/OverlayLeft.module.scss';
+import OverlayRightTheme from 'navpush/dist/styles/OverlayRight.module.scss';
+import OverlayTopTheme from 'navpush/dist/styles/OverlayTop.module.scss';
+import OverlayBottomTheme from 'navpush/dist/styles/OverlayBottom.module.scss';
+import PushLeftTheme from 'navpush/dist/styles/PushLeft.module.scss';
+import PushRightTheme from 'navpush/dist/styles/PushRight.module.scss';
+import PushTopTheme from 'navpush/dist/styles/PushTop.module.scss';
+import PushBottomTheme from 'navpush/dist/styles/PushBottom.module.scss';
+import FullLeftTheme from 'navpush/dist/styles/FullLeft.module.scss';
+import FullRightTheme from 'navpush/dist/styles/FullRight.module.scss';
+import FullTopTheme from 'navpush/dist/styles/FullTop.module.scss';
+import FullBottomTheme from 'navpush/dist/styles/FullBottom.module.scss';
+import UncoverLeftTheme from 'navpush/dist/styles/UncoverLeft.module.scss';
+import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
+import UncoverTopTheme from 'navpush/dist/styles/UncoverTop.module.scss';
+import UncoverBottomTheme from 'navpush/dist/styles/UncoverBottom.module.scss';
+import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
+import Button from '../Button';
+import styles from './styles.module.scss';
+
+function generateComponents() {
+  const themes = {
+    OverlayLeftTheme,
+    OverlayRightTheme,
+    OverlayTopTheme,
+    OverlayBottomTheme,
+    PushLeftTheme,
+    PushRightTheme,
+    PushTopTheme,
+    PushBottomTheme,
+    FullLeftTheme,
+    FullRightTheme,
+    FullTopTheme,
+    FullBottomTheme,
+    UncoverLeftTheme,
+    UncoverRightTheme,
+    UncoverTopTheme,
+    UncoverBottomTheme
+  };
+  const strategies = {};
+
+  for (const key of Object.keys(navpush)) {
+    if (key === 'Hamburger') continue;
+
+    const direction =
+      navpush[key].direction.charAt(0).toUpperCase() +
+      navpush[key].direction.slice(1);
+    const name = key.split(direction)[0];
+
+    if (!strategies[name]) {
+      strategies[name] = {};
+    }
+
+    strategies[name][direction] = {
+      component: navpush[key],
+      theme: themes[`${key}Theme`]
+    };
+  }
+
+  return strategies;
+}
+
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.components = generateComponents();
+    this.state = {
+      name: 'Push',
+      direction: 'Left'
+    };
+
+    this.handleNameClick = this.handleNameClick.bind(this);
+  }
+
+  handleNameClick(name) {
+    console.log('name changing to ' + name);
+
+    this.setState({
+      name
+    });
+  }
+
+  renderNameOptions() {
+    const buttons = [];
+
+    for (const key of Object.keys(this.components)) {
+      buttons.push(
+        <Button
+          key={ key }
+          onClick={ this.handleNameClick }
+          isActive={ this.state.name === key }
+          label={ key }
+        />
+      );
+    }
+
+    return buttons;
+  }
+
+  render() {
+    const pair = this.components[this.state.name][this.state.direction];
+    const NavPush = pair.component;
+    const theme = pair.theme;
+
+    return (
+      <NavPush
+        dim
+        theme={ theme }
+        nav={ (isOpen, toggle) => (
+          <div className="container">
+            <div className={ styles.Nav__items }>
+              navpush
+              <div className={ styles.Nav__hamburger }>
+                <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
+              </div>
+            </div>
+          </div>
+        ) }
+        sidebar={ (isOpen, toggle) => <>Hello</> }
+      >
+        <section className="hero is-primary is-fullheight">
+          <div className="hero-body">
+            <div className="container">{this.renderNameOptions()}</div>
+          </div>
+        </section>
+      </NavPush>
+    );
+  }
+}
+
+export default Dashboard;
