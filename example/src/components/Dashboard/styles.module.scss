@@ -10,3 +10,9 @@
 .Nav__hamburger {
   cursor: pointer;
 }
+
+.ButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

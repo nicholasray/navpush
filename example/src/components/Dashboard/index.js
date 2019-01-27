@@ -18,7 +18,8 @@ import UncoverTopTheme from 'navpush/dist/styles/UncoverTop.module.scss';
 import UncoverBottomTheme from 'navpush/dist/styles/UncoverBottom.module.scss';
 import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
 import Button from '../Button';
-import styles from './styles.module.scss';
+import cx from 'classnames';
+import pageTheme from './styles.module.scss';
 
 function generateComponents() {
   const themes = {
@@ -77,16 +78,12 @@ class Dashboard extends React.Component {
   }
 
   handleNameClick(name) {
-    console.log('name changing to ' + name);
-
     this.setState({
       name
     });
   }
 
   handleDirectionClick(direction) {
-    console.log('direction changing to ' + direction);
-
     this.setState({
       direction
     });
@@ -137,9 +134,9 @@ class Dashboard extends React.Component {
         theme={ theme }
         nav={ (isOpen, toggle) => (
           <div className="container">
-            <div className={ styles.Nav__items }>
+            <div className={ pageTheme.Nav__items }>
               navpush
-              <div className={ styles.Nav__hamburger }>
+              <div className={ pageTheme.Nav__hamburger }>
                 <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
               </div>
             </div>
@@ -149,7 +146,7 @@ class Dashboard extends React.Component {
       >
         <section className="hero is-primary is-fullheight">
           <div className="hero-body">
-            <div className="container">
+            <div className={ cx('container', pageTheme.ButtonContainer) }>
               <div className="buttons">{this.renderNameOptions()}</div>
               <div className="buttons">{this.renderDirectionOptions()}</div>
             </div>
