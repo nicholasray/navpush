@@ -11,7 +11,6 @@ const namespace = require( 'postcss-namespace' );
 const autoprefixer = require( 'autoprefixer' );
 const cssnano = require( 'cssnano' );
 const postcss = require( 'postcss' );
-const stylesheets = glob.sync( 'src/strategy/*/*/styles.module.scss' );
 const promises = [];
 
 // add @prefix rule to top of css ast so that postcss-namespace can work
@@ -61,24 +60,45 @@ async function buildScss( input, outFile ) {
   return writeFile( outFile, result.bundledContent );
 }
 
-stylesheets.forEach( stylesheet => {
-  const parts = stylesheet.split( path.sep );
-  const outFile = path.join(
-    'dist',
-    'styles',
-    pascal( [ parts[2], parts[3] ], { pascalCase: true } )
+function buildStrategies() {
+  const stylesheets = glob.sync( 'src/strategy/*/*/styles.module.scss' );
+  const promises = [];
+
+  stylesheets.forEach( stylesheet => {
+    const parts = stylesheet.split( path.sep );
+    const outFile = path.join(
+      'dist',
+      'styles',
+      pascal( [ parts[2], parts[3] ], { pascalCase: true } )
+    );
+
+    promises.push( buildCss( stylesheet, outFile ) );
+    promises.push( buildScss( stylesheet, outFile ) );
+  } );
+
+  return Promise.all( promises );
+}
+
+function buildHamburger() {
+  const Hamburger = 'src/Hamburger/styles.module.scss';
+  const dest = 'dist/styles/Hamburger';
+
+  return Promise.all( [ buildCss( Hamburger, dest ), buildScss( Hamburger, dest ) ] );
+}
+
+function init() {
+  promises.push( buildStrategies() );
+  promises.push( buildHamburger() );
+
+  Promise.all( promises ).then(
+    () => {
+      console.log( 'styles created' );
+    },
+    err => {
+      console.error( err );
+      process.exit( 1 );
+    }
   );
+}
 
-  promises.push( buildCss( stylesheet, outFile ) );
-  promises.push( buildScss( stylesheet, outFile ) );
-} );
-
-Promise.all( promises ).then(
-  () => {
-    console.log( 'styles created' );
-  },
-  err => {
-    console.error( err );
-    process.exit( 1 );
-  }
-);
+init();

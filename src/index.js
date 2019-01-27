@@ -22,8 +22,10 @@ import {
   left as UncoverLeft,
   right as UncoverRight
 } from './strategy/uncover';
+import Hamburger from './Hamburger';
 
 export {
+  Hamburger,
   FullLeft,
   FullRight,
   FullTop,

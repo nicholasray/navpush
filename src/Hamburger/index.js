@@ -18,6 +18,7 @@ Hamburger.propTypes = {
 
 Hamburger.defaultProps = {
   theme: {
+    Hamburger: 'NP-Hamburger',
     Hamburger__top: 'NP-Hamburger__top',
     Hamburger__middle: 'NP-Hamburger__middle',
     Hamburger__bottom: 'NP-Hamburger__bottom'
