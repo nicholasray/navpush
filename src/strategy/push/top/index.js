@@ -1,10 +1,10 @@
 import setup from '../../../Factory';
 
-export default setup({
+export default setup( {
   direction: 'top',
   nav: {
-    getStyles({ sidebar, props, isOpen }) {
-      if (!isOpen) return {};
+    getStyles( { sidebar, props, isOpen } ) {
+      if ( !isOpen ) return {};
 
       return {
         transform: `translate3d(0, ${sidebar.getHeight()}px, 0)`
@@ -12,12 +12,12 @@ export default setup({
     }
   },
   canvas: {
-    getStyles({ sidebar, props, isOpen }) {
-      if (!isOpen) return {};
+    getStyles( { sidebar, props, isOpen } ) {
+      if ( !isOpen ) return {};
 
       return {
         transform: `translate3d(0, ${sidebar.getHeight()}px, 0)`
       };
     }
   }
-});
+} );
