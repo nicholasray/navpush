@@ -18,10 +18,15 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { theme, styles, classes, children } = this.props;
+    const { attrs, theme, styles, classes, children } = this.props;
 
     return (
-      <nav ref={ this.ref } style={ styles } className={ cx( theme.Nav, classes ) }>
+      <nav
+        { ...attrs }
+        ref={ this.ref }
+        style={ styles }
+        className={ cx( theme.Nav, classes ) }
+      >
         {children}
       </nav>
     );
@@ -29,6 +34,7 @@ class Nav extends React.Component {
 }
 
 Nav.propTypes = {
+  attrs: PropTypes.object,
   theme: PropTypes.object,
   styles: PropTypes.object,
   classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
@@ -38,7 +44,8 @@ Nav.propTypes = {
 Nav.defaultProps = {
   theme: {
     Nav: 'NP-Nav'
-  }
+  },
+  attrs: {}
 };
 
 export default Nav;

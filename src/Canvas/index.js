@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const Canvas = ( { children, onClick, theme, styles, classes } ) => {
+const Canvas = ( { attrs, children, onClick, theme, styles, classes } ) => {
   return (
     <div
+      { ...attrs }
       onClick={ onClick }
       style={ styles }
       className={ cx( theme['Canvas'], classes ) }
@@ -15,6 +16,7 @@ const Canvas = ( { children, onClick, theme, styles, classes } ) => {
 };
 
 Canvas.propTypes = {
+  attrs: PropTypes.object,
   children: PropTypes.element,
   onClick: PropTypes.func,
   theme: PropTypes.object,
@@ -25,7 +27,8 @@ Canvas.propTypes = {
 Canvas.defaultProps = {
   theme: {
     Canvas: 'NP-Canvas'
-  }
+  },
+  attrs: {}
 };
 
 export default Canvas;

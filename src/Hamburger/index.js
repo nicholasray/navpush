@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Hamburger( { theme, onClick } ) {
+function Hamburger( { theme, onClick, attrs } ) {
   return (
-    <div onClick={ onClick } className={ theme.Hamburger }>
+    <button { ...attrs } onClick={ onClick } className={ theme.Hamburger }>
       <span className={ theme['Hamburger__top'] } />
       <span className={ theme['Hamburger__middle'] } />
       <span className={ theme['Hamburger__bottom'] } />
-    </div>
+    </button>
   );
 }
 
 Hamburger.propTypes = {
+  onClick: PropTypes.func.isRequired,
   theme: PropTypes.object,
-  onClick: PropTypes.func
+  attrs: PropTypes.object
 };
 
 Hamburger.defaultProps = {
@@ -22,7 +23,8 @@ Hamburger.defaultProps = {
     Hamburger__top: 'NP-Hamburger__top',
     Hamburger__middle: 'NP-Hamburger__middle',
     Hamburger__bottom: 'NP-Hamburger__bottom'
-  }
+  },
+  attrs: {}
 };
 
 export default Hamburger;

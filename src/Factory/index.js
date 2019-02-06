@@ -56,6 +56,7 @@ const factory = strategy => {
           } ) }
         >
           <Nav
+            attrs={ this.props.navAttrs }
             ref={ this.navRef }
             classes={ cx( theme[`Nav--${strategy.direction}`], {
               [theme['Nav--open']]: theme['Nav--open'] && this.state.isOpen
@@ -66,6 +67,7 @@ const factory = strategy => {
             {this.props.nav( this.state.isOpen, this.toggle )}
           </Nav>
           <Sidebar
+            attrs={ this.props.sidebarAttrs }
             ref={ this.sidebarRef }
             classes={ cx( theme[`Sidebar--${strategy.direction}`], {
               [theme['Sidebar--open']]:
@@ -80,6 +82,7 @@ const factory = strategy => {
           </Sidebar>
           {this.props.dim && (
             <Overlay
+              attrs={ this.props.overlayAttrs }
               onClick={ this.handleCanvasClick }
               classes={ cx( theme[`Overlay--${strategy.direction}`], {
                 [theme['Overlay--open']]:
@@ -93,6 +96,7 @@ const factory = strategy => {
             />
           )}
           <Canvas
+            attrs={ this.props.canvasAttrs }
             onClick={ this.handleCanvasClick }
             classes={ cx( theme[`Canvas--${strategy.direction}`], {
               [theme['Canvas--open']]:
@@ -116,11 +120,15 @@ const factory = strategy => {
     dim: PropTypes.bool,
     nav: PropTypes.func.isRequired,
     sidebar: PropTypes.func.isRequired,
-    theme: PropTypes.object.isRequired
+    theme: PropTypes.object.isRequired,
+    navAttrs: PropTypes.object,
+    sidebarAttrs: PropTypes.object,
+    overlayAttrs: PropTypes.object,
+    canvasAttrs: PropTypes.object
   };
 
   NavPush.defaultProps = {
-    dim: false,
+    dim: true,
     theme: Object.assign(
       {
         NavPush: 'NP-NavPush',

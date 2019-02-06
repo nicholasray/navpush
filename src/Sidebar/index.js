@@ -18,10 +18,10 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { theme, children, classes, styles } = this.props;
+    const { attrs, theme, children, classes, styles } = this.props;
 
     return (
-      <div ref={ this.ref } style={ styles } className={ cx( theme.Sidebar, classes ) }>
+      <div { ...attrs } ref={ this.ref } style={ styles } className={ cx( theme.Sidebar, classes ) }>
         {children}
       </div>
     );
@@ -29,6 +29,7 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.propTypes = {
+  attrs: PropTypes.object,
   theme: PropTypes.object,
   children: PropTypes.element,
   classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
@@ -38,7 +39,8 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   theme: {
     Sidebar: 'NP-Sidebar'
-  }
+  },
+  attrs: {}
 };
 
 export default Sidebar;
