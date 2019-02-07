@@ -3,6 +3,8 @@ import { render, fireEvent, cleanup } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import Hamburger from '../Hamburger';
 import setup from './index';
+import Sidebar from '../Sidebar';
+import Nav from '../Nav';
 let props;
 
 beforeEach( () => {
@@ -10,11 +12,12 @@ beforeEach( () => {
     attrs: { 'data-testid': 'np' },
     nav: ( isOpen, toggle ) => (
       <div>
+        <div>Nav content</div>
         <Hamburger onClick={ toggle } attrs={ { 'data-testid': 'hamburger' } } />
       </div>
     ),
     navAttrs: { 'data-testid': 'nav' },
-    sidebar: () => <div />,
+    sidebar: () => <div>Sidebar content</div>,
     sidebarAttrs: { 'data-testid': 'sidebar' },
     overlayAttrs: { 'data-testid': 'overlay' },
     canvasAttrs: { 'data-testid': 'canvas' }
@@ -23,7 +26,7 @@ beforeEach( () => {
 afterEach( cleanup );
 
 describe( 'when theme is not passed', () => {
-  test( 'renders default classnames when opened and closed', () => {
+  it( 'renders default classnames when opened and closed', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -70,7 +73,7 @@ describe( 'when theme is not passed', () => {
 } );
 
 describe( 'when theme is passed', () => {
-  test( 'renders theme classnames when opened and closed', () => {
+  it( 'renders theme classnames when opened and closed', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -133,7 +136,7 @@ describe( 'when theme is passed', () => {
 } );
 
 describe( 'when dim is disabled', () => {
-  test( 'overlay is not rendered', () => {
+  it( 'does not render overlay', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -146,5 +149,111 @@ describe( 'when dim is disabled', () => {
     fireEvent.click( getByTestId( 'hamburger' ) );
 
     expect( container.querySelector( '.NP-Overlay' ) ).not.toBeInTheDocument();
+  } );
+} );
+
+describe( 'when strategy includes inline styles', () => {
+  it( 'renders inline styles', () => {
+    const passedProps = props;
+    const NavPush = setup( {
+      direction: 'foo',
+      nav: {
+        getStyles( { sidebar, nav, props, isOpen } ) {
+          if ( !isOpen ) {
+            return {
+              transform: `translateX(10px)`
+            };
+          }
+
+          expect( props ).toMatchObject( passedProps );
+          expect( sidebar ).toBeInstanceOf( Sidebar );
+          expect( nav ).toBeInstanceOf( Nav );
+
+          return {
+            transform: `translateX(100px)`
+          };
+        }
+      },
+      sidebar: {
+        getStyles( { sidebar, nav, props, isOpen } ) {
+          if ( !isOpen ) {
+            return {
+              transform: `translateX(20px)`
+            };
+          }
+
+          expect( props ).toMatchObject( passedProps );
+          expect( sidebar ).toBeInstanceOf( Sidebar );
+          expect( nav ).toBeInstanceOf( Nav );
+
+          return {
+            transform: `translateX(200px)`
+          };
+        }
+      },
+      overlay: {
+        getStyles( { sidebar, nav, props, isOpen } ) {
+          if ( !isOpen ) {
+            return {
+              transform: `translateX(30px)`
+            };
+          }
+
+          expect( props ).toMatchObject( passedProps );
+          expect( sidebar ).toBeInstanceOf( Sidebar );
+          expect( nav ).toBeInstanceOf( Nav );
+
+          return {
+            transform: `translateX(300px)`
+          };
+        }
+      },
+      canvas: {
+        getStyles( { sidebar, nav, props, isOpen } ) {
+          if ( !isOpen ) {
+            return {
+              transform: `translateX(40px)`
+            };
+          }
+
+          expect( props ).toMatchObject( passedProps );
+          expect( sidebar ).toBeInstanceOf( Sidebar );
+          expect( nav ).toBeInstanceOf( Nav );
+
+          return {
+            transform: `translateX(400px)`
+          };
+        }
+      }
+    } );
+    const { getByTestId } = render(
+      <NavPush { ...props }>
+        <div>body</div>
+      </NavPush>
+    );
+
+    const assertClosed = () => {
+      expect( getByTestId( 'nav' ) ).toHaveStyle( 'transform: translateX(10px)' );
+      expect( getByTestId( 'sidebar' ) ).toHaveStyle( 'transform: translateX(20px)' );
+      expect( getByTestId( 'overlay' ) ).toHaveStyle( 'transform: translateX(30px)' );
+      expect( getByTestId( 'canvas' ) ).toHaveStyle( 'transform: translateX(40px)' );
+    };
+
+    const assertOpen = () => {
+      expect( getByTestId( 'nav' ) ).toHaveStyle( 'transform: translateX(100px)' );
+      expect( getByTestId( 'sidebar' ) ).toHaveStyle(
+        'transform: translateX(200px)'
+      );
+      expect( getByTestId( 'overlay' ) ).toHaveStyle(
+        'transform: translateX(300px)'
+      );
+      expect( getByTestId( 'canvas' ) ).toHaveStyle( 'transform: translateX(400px)' );
+    };
+
+    assertClosed();
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertOpen();
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertClosed();
   } );
 } );
