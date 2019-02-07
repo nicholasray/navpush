@@ -50,6 +50,7 @@ const factory = strategy => {
 
       return (
         <div
+          { ...this.props.attrs }
           className={ cx( theme.NavPush, {
             [theme['NavPush--open']]:
               theme['NavPush--open'] && this.state.isOpen
@@ -58,7 +59,7 @@ const factory = strategy => {
           <Nav
             attrs={ this.props.navAttrs }
             ref={ this.navRef }
-            classes={ cx( theme[`Nav--${strategy.direction}`], {
+            classes={ cx( {
               [theme['Nav--open']]: theme['Nav--open'] && this.state.isOpen
             } ) }
             styles={ strategy.nav && strategy.nav.getStyles( strategyParams ) }
@@ -69,7 +70,7 @@ const factory = strategy => {
           <Sidebar
             attrs={ this.props.sidebarAttrs }
             ref={ this.sidebarRef }
-            classes={ cx( theme[`Sidebar--${strategy.direction}`], {
+            classes={ cx( {
               [theme['Sidebar--open']]:
                 theme['Sidebar--open'] && this.state.isOpen
             } ) }
@@ -84,7 +85,7 @@ const factory = strategy => {
             <Overlay
               attrs={ this.props.overlayAttrs }
               onClick={ this.handleCanvasClick }
-              classes={ cx( theme[`Overlay--${strategy.direction}`], {
+              classes={ cx( {
                 [theme['Overlay--open']]:
                   theme['Overlay--open'] && this.state.isOpen
               } ) }
@@ -98,7 +99,7 @@ const factory = strategy => {
           <Canvas
             attrs={ this.props.canvasAttrs }
             onClick={ this.handleCanvasClick }
-            classes={ cx( theme[`Canvas--${strategy.direction}`], {
+            classes={ cx( {
               [theme['Canvas--open']]:
                 theme['Canvas--open'] && this.state.isOpen
             } ) }
@@ -133,13 +134,9 @@ const factory = strategy => {
       {
         NavPush: 'NP-NavPush',
         'NavPush--open': 'NP-NavPush--open',
-        [`Nav--${strategy.direction}`]: `NP-Nav--${strategy.direction}`,
         'Nav--open': 'NP-Nav--open',
-        [`Sidebar--${strategy.direction}`]: `NP-Sidebar--${strategy.direction}`,
-        [`Sidebar--open`]: `NP-Sidebar--open`,
-        [`Overlay--${strategy.direction}`]: `NP-Overlay--${strategy.direction}`,
+        'Sidebar--open': 'NP-Sidebar--open',
         'Overlay--open': `NP-Overlay--open`,
-        [`Canvas--${strategy.direction}`]: `NP-Canvas--${strategy.direction}`,
         'Canvas--open': 'NP-Canvas--open'
       },
       Nav.defaultProps.theme,

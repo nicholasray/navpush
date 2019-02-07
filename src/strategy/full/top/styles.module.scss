@@ -1,6 +1,6 @@
 @import '../styles.module.scss';
 
-.Sidebar--top {
+.Sidebar {
   top: $navHeight;
   bottom: 100%;
   left: 0;
@@ -8,6 +8,6 @@
   transition: bottom $transitionDuration ease;
 }
 
-.Sidebar--top.Sidebar--open {
+.Sidebar.Sidebar--open {
   bottom: 0;
 }

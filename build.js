@@ -4,13 +4,12 @@ const glob = require( 'glob' );
 const fs = require( 'fs' );
 const path = require( 'path' );
 const pascal = require( 'camelcase' );
-const { Bundler } = require( 'scss-bundle' );
 const atImport = require( 'postcss-easy-import' );
 const precss = require( 'precss' );
 const namespace = require( 'postcss-namespace' );
 const autoprefixer = require( 'autoprefixer' );
-const cssnano = require( 'cssnano' );
 const postcss = require( 'postcss' );
+const combineDuplicates = require( 'postcss-combine-duplicated-selectors' );
 const promises = [];
 
 // add @prefix rule to top of css ast so that postcss-namespace can work
@@ -35,17 +34,17 @@ async function writeFile( outFile, content ) {
 }
 
 async function buildCss( input, outFile ) {
-  outFile = outFile + '.min.css';
+  outFile = outFile + '.css';
 
-  const css = await fs.promises.readFile( input );
+  const scss = await fs.promises.readFile( input );
   const result = await postcss( [
     atImport(),
+    combineDuplicates( { removeDuplicatedProperties: true } ),
     precss(),
     addPrefixRule( { prefix: 'NP' } ),
     namespace( { token: '-' } ),
-    autoprefixer(),
-    cssnano()
-  ] ).process( css, { from: input, to: outFile } );
+    autoprefixer()
+  ] ).process( scss, { from: input, to: outFile } );
 
   return writeFile( outFile, result.css );
 }
@@ -53,11 +52,15 @@ async function buildCss( input, outFile ) {
 async function buildScss( input, outFile ) {
   outFile = outFile + '.module.scss';
 
-  const bundler = new Bundler( undefined, __dirname );
-  // Relative file path to project directory path.
-  const result = await bundler.Bundle( input );
+  const scss = await fs.promises.readFile( input );
+  const result = await postcss( [
+    atImport(),
+    combineDuplicates( {
+      removeDuplicatedProperties: true
+    } )
+  ] ).process( scss, { from: input, to: outFile } );
 
-  return writeFile( outFile, result.bundledContent );
+  return writeFile( outFile, result.css );
 }
 
 function buildStrategies() {

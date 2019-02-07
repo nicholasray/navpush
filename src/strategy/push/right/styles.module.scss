@@ -1,20 +1,20 @@
 @import '../styles.module.scss';
 
-.Canvas--right.Canvas--open {
+.Canvas.Canvas--open {
   transform: translate3d(-$width, 0, 0);
 }
 
-.Nav--right.Nav--open {
+.Nav.Nav--open {
   transform: translate3d(-$width, 0, 0);
 }
 
-.Sidebar--right {
+.Sidebar {
   top: 0;
   right: -$width;
   width: $width;
   height: calc(100% + 60px);
 }
 
-.Sidebar--right.Sidebar--open {
+.Sidebar.Sidebar--open {
   transform: translate3d(-$width, 0, 0);
 }
