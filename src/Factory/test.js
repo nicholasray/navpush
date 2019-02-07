@@ -23,7 +23,7 @@ beforeEach( () => {
 afterEach( cleanup );
 
 describe( 'when theme is not passed', () => {
-  test( 'renders default classnames before and after open', () => {
+  test( 'renders default classnames when opened and closed', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -70,7 +70,7 @@ describe( 'when theme is not passed', () => {
 } );
 
 describe( 'when theme is passed', () => {
-  test( 'renders theme classnames before and after open', () => {
+  test( 'renders theme classnames when opened and closed', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -133,7 +133,7 @@ describe( 'when theme is passed', () => {
 } );
 
 describe( 'when dim is disabled', () => {
-  test( 'Overlay is not rendered', () => {
+  test( 'overlay is not rendered', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
