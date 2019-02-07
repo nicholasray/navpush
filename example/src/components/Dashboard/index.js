@@ -42,15 +42,15 @@ function generateComponents() {
   };
   const strategies = {};
 
-  for (const key of Object.keys(navpush)) {
-    if (key === 'Hamburger') continue;
+  for ( const key of Object.keys( navpush ) ) {
+    if ( key === 'Hamburger' ) continue;
 
     const direction =
-      navpush[key].direction.charAt(0).toUpperCase() +
-      navpush[key].direction.slice(1);
-    const name = key.split(direction)[0];
+      navpush[key].direction.charAt( 0 ).toUpperCase() +
+      navpush[key].direction.slice( 1 );
+    const name = key.split( direction )[0];
 
-    if (!strategies[name]) {
+    if ( !strategies[name] ) {
       strategies[name] = {};
     }
 
@@ -64,8 +64,8 @@ function generateComponents() {
 }
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
 
     this.components = generateComponents();
     this.state = {
@@ -73,26 +73,26 @@ class Dashboard extends React.Component {
       direction: 'Left'
     };
 
-    this.handleNameClick = this.handleNameClick.bind(this);
-    this.handleDirectionClick = this.handleDirectionClick.bind(this);
+    this.handleNameClick = this.handleNameClick.bind( this );
+    this.handleDirectionClick = this.handleDirectionClick.bind( this );
   }
 
-  handleNameClick(name) {
-    this.setState({
+  handleNameClick( name ) {
+    this.setState( {
       name
-    });
+    } );
   }
 
-  handleDirectionClick(direction) {
-    this.setState({
+  handleDirectionClick( direction ) {
+    this.setState( {
       direction
-    });
+    } );
   }
 
   renderNameOptions() {
     const buttons = [];
 
-    for (const key of Object.keys(this.components)) {
+    for ( const key of Object.keys( this.components ) ) {
       buttons.push(
         <Button
           key={ key }
@@ -109,7 +109,7 @@ class Dashboard extends React.Component {
   renderDirectionOptions() {
     const buttons = [];
 
-    for (const key of Object.keys(this.components[this.state.name])) {
+    for ( const key of Object.keys( this.components[this.state.name] ) ) {
       buttons.push(
         <Button
           key={ key }
@@ -132,7 +132,7 @@ class Dashboard extends React.Component {
       <NavPush
         dim
         theme={ theme }
-        nav={ (isOpen, toggle) => (
+        nav={ ( isOpen, toggle ) => (
           <div className="container">
             <div className={ pageTheme.Nav__items }>
               navpush
@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
             </div>
           </div>
         ) }
-        sidebar={ (isOpen, toggle) => (
+        sidebar={ ( isOpen, toggle ) => (
           <div className={ pageTheme.SidebarInner }>
             You can put anything in here
           </div>
@@ -148,7 +148,7 @@ class Dashboard extends React.Component {
       >
         <section className="hero is-primary is-fullheight">
           <div className="hero-body">
-            <div className={ cx('container', pageTheme.ButtonContainer) }>
+            <div className={ cx( 'container', pageTheme.ButtonContainer ) }>
               <div className="buttons">{this.renderNameOptions()}</div>
               <div className="buttons">{this.renderDirectionOptions()}</div>
             </div>

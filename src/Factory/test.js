@@ -3,7 +3,23 @@ import { render, fireEvent, cleanup } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import Hamburger from '../Hamburger';
 import setup from './index';
+let props;
 
+beforeEach( () => {
+  props = {
+    attrs: { 'data-testid': 'np' },
+    nav: ( isOpen, toggle ) => (
+      <div>
+        <Hamburger onClick={ toggle } attrs={ { 'data-testid': 'hamburger' } } />
+      </div>
+    ),
+    navAttrs: { 'data-testid': 'nav' },
+    sidebar: () => <div />,
+    sidebarAttrs: { 'data-testid': 'sidebar' },
+    overlayAttrs: { 'data-testid': 'overlay' },
+    canvasAttrs: { 'data-testid': 'canvas' }
+  };
+} );
 afterEach( cleanup );
 
 describe( 'when theme is not passed', () => {
@@ -12,26 +28,10 @@ describe( 'when theme is not passed', () => {
       direction: 'foo'
     } );
     const { getByTestId } = render(
-      <NavPush
-        attrs={ { 'data-testid': 'np' } }
-        nav={ ( isOpen, toggle ) => (
-          <div>
-            <Hamburger
-              onClick={ toggle }
-              attrs={ { 'data-testid': 'hamburger' } }
-            />
-          </div>
-        ) }
-        navAttrs={ { 'data-testid': 'nav' } }
-        sidebar={ () => <div /> }
-        sidebarAttrs={ { 'data-testid': 'sidebar' } }
-        overlayAttrs={ { 'data-testid': 'overlay' } }
-        canvasAttrs={ { 'data-testid': 'canvas' } }
-      >
+      <NavPush { ...props }>
         <div>body</div>
       </NavPush>
     );
-
     expect( getByTestId( 'np' ) ).toHaveClass( 'NP-NavPush' );
     expect( getByTestId( 'overlay' ) ).toHaveClass( 'NP-Overlay' );
     expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas' );
@@ -72,23 +72,7 @@ describe( 'when theme is passed', () => {
       'Nav--open': 'Foo-Nav--open'
     };
     const { getByTestId } = render(
-      <NavPush
-        attrs={ { 'data-testid': 'np' } }
-        nav={ ( isOpen, toggle ) => (
-          <div>
-            <Hamburger
-              onClick={ toggle }
-              attrs={ { 'data-testid': 'hamburger' } }
-            />
-          </div>
-        ) }
-        navAttrs={ { 'data-testid': 'nav' } }
-        sidebar={ () => <div /> }
-        sidebarAttrs={ { 'data-testid': 'sidebar' } }
-        overlayAttrs={ { 'data-testid': 'overlay' } }
-        canvasAttrs={ { 'data-testid': 'canvas' } }
-        theme={ theme }
-      >
+      <NavPush { ...props } theme={ theme }>
         <div>body</div>
       </NavPush>
     );
