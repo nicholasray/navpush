@@ -160,6 +160,8 @@ describe( 'when strategy includes inline styles', () => {
       nav: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( props ).toMatchObject( passedProps );
+
             return {
               transform: `translateX(10px)`
             };
@@ -177,6 +179,8 @@ describe( 'when strategy includes inline styles', () => {
       sidebar: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( props ).toMatchObject( passedProps );
+
             return {
               transform: `translateX(20px)`
             };
@@ -194,6 +198,8 @@ describe( 'when strategy includes inline styles', () => {
       overlay: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( props ).toMatchObject( passedProps );
+
             return {
               transform: `translateX(30px)`
             };
@@ -211,6 +217,8 @@ describe( 'when strategy includes inline styles', () => {
       canvas: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( props ).toMatchObject( passedProps );
+
             return {
               transform: `translateX(40px)`
             };
