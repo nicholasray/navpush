@@ -32,25 +32,40 @@ describe( 'when theme is not passed', () => {
         <div>body</div>
       </NavPush>
     );
-    expect( getByTestId( 'np' ) ).toHaveClass( 'NP-NavPush' );
-    expect( getByTestId( 'overlay' ) ).toHaveClass( 'NP-Overlay' );
-    expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas' );
-    expect( getByTestId( 'sidebar' ) ).toHaveClass( 'NP-Sidebar' );
-    expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav' );
+    const assertClosed = () => {
+      expect( getByTestId( 'np' ) ).toHaveClass( 'NP-NavPush' );
+      expect( getByTestId( 'overlay' ) ).toHaveClass( 'NP-Overlay' );
+      expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas' );
+      expect( getByTestId( 'sidebar' ) ).toHaveClass( 'NP-Sidebar' );
+      expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav' );
+    };
 
+    const assertOpen = () => {
+      expect( getByTestId( 'np' ) ).toHaveClass( 'NP-NavPush--open' );
+      expect( getByTestId( 'overlay' ) ).toHaveClass(
+        'NP-Overlay',
+        'NP-Overlay--open'
+      );
+      expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas', 'NP-Canvas--open' );
+      expect( getByTestId( 'sidebar' ) ).toHaveClass(
+        'NP-Sidebar',
+        'NP-Sidebar--open'
+      );
+      expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav', 'NP-Nav--open' );
+    };
+
+    // Check that clicking hamburger can open/close
+    assertClosed();
     fireEvent.click( getByTestId( 'hamburger' ) );
+    assertOpen();
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertClosed();
 
-    expect( getByTestId( 'np' ) ).toHaveClass( 'NP-NavPush--open' );
-    expect( getByTestId( 'overlay' ) ).toHaveClass(
-      'NP-Overlay',
-      'NP-Overlay--open'
-    );
-    expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas', 'NP-Canvas--open' );
-    expect( getByTestId( 'sidebar' ) ).toHaveClass(
-      'NP-Sidebar',
-      'NP-Sidebar--open'
-    );
-    expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav', 'NP-Nav--open' );
+    // Check that clicking overlay can close as well
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertOpen();
+    fireEvent.click( getByTestId( 'overlay' ) );
+    assertClosed();
   } );
 } );
 
@@ -77,24 +92,59 @@ describe( 'when theme is passed', () => {
       </NavPush>
     );
 
-    expect( getByTestId( 'np' ) ).toHaveClass( 'Foo-NavPush' );
-    expect( getByTestId( 'overlay' ) ).toHaveClass( 'Foo-Overlay' );
-    expect( getByTestId( 'canvas' ) ).toHaveClass( 'Foo-Canvas' );
-    expect( getByTestId( 'sidebar' ) ).toHaveClass( 'Foo-Sidebar' );
-    expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav' );
+    const assertClosed = () => {
+      expect( getByTestId( 'np' ) ).toHaveClass( 'Foo-NavPush' );
+      expect( getByTestId( 'overlay' ) ).toHaveClass( 'Foo-Overlay' );
+      expect( getByTestId( 'canvas' ) ).toHaveClass( 'Foo-Canvas' );
+      expect( getByTestId( 'sidebar' ) ).toHaveClass( 'Foo-Sidebar' );
+      expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav' );
+    };
+
+    const assertOpen = () => {
+      expect( getByTestId( 'np' ) ).toHaveClass( 'Foo-NavPush--open' );
+      expect( getByTestId( 'overlay' ) ).toHaveClass(
+        'Foo-Overlay',
+        'Foo-Overlay--open'
+      );
+      expect( getByTestId( 'canvas' ) ).toHaveClass(
+        'Foo-Canvas',
+        'Foo-Canvas--open'
+      );
+      expect( getByTestId( 'sidebar' ) ).toHaveClass(
+        'Foo-Sidebar',
+        'Foo-Sidebar--open'
+      );
+      expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav', 'Foo-Nav--open' );
+    };
+
+    // Check that clicking hamburger can open/close
+    assertClosed();
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertOpen();
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertClosed();
+
+    // Check that clicking overlay can close as well
+    fireEvent.click( getByTestId( 'hamburger' ) );
+    assertOpen();
+    fireEvent.click( getByTestId( 'overlay' ) );
+    assertClosed();
+  } );
+} );
+
+describe( 'when dim is disabled', () => {
+  test( 'Overlay is not rendered', () => {
+    const NavPush = setup( {
+      direction: 'foo'
+    } );
+    const { getByTestId, container } = render(
+      <NavPush { ...props } dim={ false }>
+        <div>body</div>
+      </NavPush>
+    );
 
     fireEvent.click( getByTestId( 'hamburger' ) );
 
-    expect( getByTestId( 'np' ) ).toHaveClass( 'Foo-NavPush--open' );
-    expect( getByTestId( 'overlay' ) ).toHaveClass(
-      'Foo-Overlay',
-      'Foo-Overlay--open'
-    );
-    expect( getByTestId( 'canvas' ) ).toHaveClass( 'Foo-Canvas', 'Foo-Canvas--open' );
-    expect( getByTestId( 'sidebar' ) ).toHaveClass(
-      'Foo-Sidebar',
-      'Foo-Sidebar--open'
-    );
-    expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav', 'Foo-Nav--open' );
+    expect( container.querySelector( '.NP-Overlay' ) ).not.toBeInTheDocument();
   } );
 } );
