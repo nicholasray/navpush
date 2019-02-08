@@ -1,14 +1,19 @@
 $color: #fff !default;
+$padding: 10px;
 
 .Hamburger {
+  display: block;
+  background: none;
+  border: 0;
+  padding: $padding;
+  cursor: pointer;
+}
+
+.Hamburger__line-container {
   display: block;
   position: relative;
   width: 30px;
   height: 24px;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
 }
 
 .Hamburger__line {

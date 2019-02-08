@@ -10,6 +10,8 @@
   opacity: 0;
   transition: transform $transitionDuration, opacity $transitionDuration,
     visibility $transitionDuration;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .Overlay--open {

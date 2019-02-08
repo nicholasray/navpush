@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 function Hamburger( { theme, onClick, attrs } ) {
   return (
     <button { ...attrs } onClick={ onClick } className={ theme.Hamburger }>
-      <span className={ theme['Hamburger__top'] } />
-      <span className={ theme['Hamburger__middle'] } />
-      <span className={ theme['Hamburger__bottom'] } />
+      <span className={ theme['Hamburger__line-container'] }>
+        <span className={ theme['Hamburger__top'] } />
+        <span className={ theme['Hamburger__middle'] } />
+        <span className={ theme['Hamburger__bottom'] } />
+      </span>
     </button>
   );
 }

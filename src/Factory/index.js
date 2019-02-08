@@ -78,6 +78,22 @@ const factory = strategy => {
               theme['NavPush--open'] && this.state.isOpen
           } ) }
         >
+          <Canvas
+            attrs={ this.props.canvasAttrs }
+            onClick={ this.handleCanvasClick }
+            classes={ cx( {
+              [theme['Canvas--open']]:
+                theme['Canvas--open'] && this.state.isOpen
+            } ) }
+            styles={
+              this.state.isMounted
+                ? strategy.canvas.getStyles( strategyParams )
+                : undefined
+            }
+            theme={ theme }
+          >
+            {this.props.children}
+          </Canvas>
           <Nav
             attrs={ this.props.navAttrs }
             ref={ this.navRef }
@@ -93,22 +109,6 @@ const factory = strategy => {
           >
             {this.props.nav( this.state.isOpen, this.toggle )}
           </Nav>
-          <Sidebar
-            attrs={ this.props.sidebarAttrs }
-            ref={ this.sidebarRef }
-            classes={ cx( {
-              [theme['Sidebar--open']]:
-                theme['Sidebar--open'] && this.state.isOpen
-            } ) }
-            styles={
-              this.state.isMounted
-                ? strategy.sidebar.getStyles( strategyParams )
-                : undefined
-            }
-            theme={ theme }
-          >
-            {this.props.sidebar( this.state.isOpen, this.toggle )}
-          </Sidebar>
           {this.props.dim && (
             <Overlay
               attrs={ this.props.overlayAttrs }
@@ -126,22 +126,22 @@ const factory = strategy => {
               isActive={ this.state.isOpen }
             />
           )}
-          <Canvas
-            attrs={ this.props.canvasAttrs }
-            onClick={ this.handleCanvasClick }
+          <Sidebar
+            attrs={ this.props.sidebarAttrs }
+            ref={ this.sidebarRef }
             classes={ cx( {
-              [theme['Canvas--open']]:
-                theme['Canvas--open'] && this.state.isOpen
+              [theme['Sidebar--open']]:
+                theme['Sidebar--open'] && this.state.isOpen
             } ) }
             styles={
               this.state.isMounted
-                ? strategy.canvas.getStyles( strategyParams )
+                ? strategy.sidebar.getStyles( strategyParams )
                 : undefined
             }
             theme={ theme }
           >
-            {this.props.children}
-          </Canvas>
+            {this.props.sidebar( this.state.isOpen, this.toggle )}
+          </Sidebar>
         </div>
       );
     }

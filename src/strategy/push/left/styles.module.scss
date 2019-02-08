@@ -7,14 +7,14 @@
   height: calc(100% + 60px);
 }
 
-.Sidebar.Sidebar--open {
+.Sidebar--open {
   transform: translate3d($width, 0, 0);
 }
 
-.Canvas.Canvas--open {
+.Canvas--open {
   transform: translate3d($width, 0, 0);
 }
 
-.Nav.Nav--open {
+.Nav--open {
   transform: translate3d($width, 0, 0);
 }

@@ -5,9 +5,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  transition: top $transitionDuration ease;
+  transition: top $transitionDuration ease, visibility $transitionDuration ease;
 }
 
-.Sidebar.Sidebar--open {
+.Sidebar--open {
   top: $navHeight;
 }

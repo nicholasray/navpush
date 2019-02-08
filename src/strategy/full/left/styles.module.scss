@@ -5,9 +5,10 @@
   bottom: 0;
   left: 0;
   right: 100%;
-  transition: right $transitionDuration ease;
+  transition: right $transitionDuration ease,
+    visibility $transitionDuration ease;
 }
 
-.Sidebar.Sidebar--open {
+.Sidebar--open {
   right: 0;
 }

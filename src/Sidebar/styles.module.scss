@@ -1,7 +1,12 @@
 .Sidebar {
   position: fixed;
-  background: white;
-  color: black;
-  transition: transform $transitionDuration ease;
+  background: #fff;
+  transition: transform $transitionDuration ease,
+    visibility $transitionDuration ease;
   z-index: 10;
+  visibility: hidden;
+}
+
+.Sidebar--open {
+  visibility: visible;
 }

@@ -7,6 +7,6 @@
   height: calc(100% + 60px);
 }
 
-.Sidebar.Sidebar--open {
+.Sidebar--open {
   transform: translate3d($width, 0, 0);
 }
