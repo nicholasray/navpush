@@ -7,15 +7,31 @@ import Overlay from '../Overlay';
 import cx from 'classnames';
 
 const factory = strategy => {
-  if ( !strategy.direction ) {
-    throw new Error( "Strategy object must have 'direction' property" );
-  }
+  strategy = Object.assign(
+    {
+      direction: '',
+      nav: {
+        getStyles() {}
+      },
+      sidebar: {
+        getStyles() {}
+      },
+      canvas: {
+        getStyles() {}
+      },
+      overlay: {
+        getStyles() {}
+      }
+    },
+    strategy
+  );
 
   class NavPush extends React.Component {
     constructor( props ) {
       super( props );
 
       this.state = {
+        isMounted: false,
         isOpen: false
       };
 
@@ -23,6 +39,12 @@ const factory = strategy => {
       this.handleCanvasClick = this.handleCanvasClick.bind( this );
       this.sidebarRef = React.createRef();
       this.navRef = React.createRef();
+    }
+
+    componentDidMount() {
+      this.setState( {
+        isMounted: true
+      } );
     }
 
     toggle() {
@@ -62,7 +84,11 @@ const factory = strategy => {
             classes={ cx( {
               [theme['Nav--open']]: theme['Nav--open'] && this.state.isOpen
             } ) }
-            styles={ strategy.nav && strategy.nav.getStyles( strategyParams ) }
+            styles={
+              this.state.isMounted
+                ? strategy.nav.getStyles( strategyParams )
+                : undefined
+            }
             theme={ theme }
           >
             {this.props.nav( this.state.isOpen, this.toggle )}
@@ -75,7 +101,9 @@ const factory = strategy => {
                 theme['Sidebar--open'] && this.state.isOpen
             } ) }
             styles={
-              strategy.sidebar && strategy.sidebar.getStyles( strategyParams )
+              this.state.isMounted
+                ? strategy.sidebar.getStyles( strategyParams )
+                : undefined
             }
             theme={ theme }
           >
@@ -90,7 +118,9 @@ const factory = strategy => {
                   theme['Overlay--open'] && this.state.isOpen
               } ) }
               styles={
-                strategy.overlay && strategy.overlay.getStyles( strategyParams )
+                this.state.isMounted
+                  ? strategy.overlay.getStyles( strategyParams )
+                  : undefined
               }
               theme={ theme }
               isActive={ this.state.isOpen }
@@ -104,7 +134,9 @@ const factory = strategy => {
                 theme['Canvas--open'] && this.state.isOpen
             } ) }
             styles={
-              strategy.canvas && strategy.canvas.getStyles( strategyParams )
+              this.state.isMounted
+                ? strategy.canvas.getStyles( strategyParams )
+                : undefined
             }
             theme={ theme }
           >

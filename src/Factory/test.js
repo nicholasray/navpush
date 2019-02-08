@@ -160,6 +160,8 @@ describe( 'when strategy includes inline styles', () => {
       nav: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( sidebar ).toBeInstanceOf( Sidebar );
+            expect( nav ).toBeInstanceOf( Nav );
             expect( props ).toMatchObject( passedProps );
 
             return {
@@ -167,9 +169,9 @@ describe( 'when strategy includes inline styles', () => {
             };
           }
 
-          expect( props ).toMatchObject( passedProps );
           expect( sidebar ).toBeInstanceOf( Sidebar );
           expect( nav ).toBeInstanceOf( Nav );
+          expect( props ).toMatchObject( passedProps );
 
           return {
             transform: `translateX(100px)`
@@ -179,6 +181,8 @@ describe( 'when strategy includes inline styles', () => {
       sidebar: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( sidebar ).toBeInstanceOf( Sidebar );
+            expect( nav ).toBeInstanceOf( Nav );
             expect( props ).toMatchObject( passedProps );
 
             return {
@@ -186,9 +190,9 @@ describe( 'when strategy includes inline styles', () => {
             };
           }
 
-          expect( props ).toMatchObject( passedProps );
           expect( sidebar ).toBeInstanceOf( Sidebar );
           expect( nav ).toBeInstanceOf( Nav );
+          expect( props ).toMatchObject( passedProps );
 
           return {
             transform: `translateX(200px)`
@@ -198,6 +202,8 @@ describe( 'when strategy includes inline styles', () => {
       overlay: {
         getStyles( { sidebar, nav, props, isOpen } ) {
           if ( !isOpen ) {
+            expect( sidebar ).toBeInstanceOf( Sidebar );
+            expect( nav ).toBeInstanceOf( Nav );
             expect( props ).toMatchObject( passedProps );
 
             return {
