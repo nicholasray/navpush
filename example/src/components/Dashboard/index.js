@@ -130,7 +130,6 @@ class Dashboard extends React.Component {
 
     return (
       <NavPush
-        dim
         theme={ theme }
         nav={ ( isOpen, toggle ) => (
           <div className="container">
