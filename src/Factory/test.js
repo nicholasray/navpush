@@ -41,6 +41,12 @@ describe( 'when theme is not passed', () => {
       expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas' );
       expect( getByTestId( 'sidebar' ) ).toHaveClass( 'NP-Sidebar' );
       expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav' );
+
+      expect( getByTestId( 'np' ) ).not.toHaveClass( 'NP-NavPush--open' );
+      expect( getByTestId( 'overlay' ) ).not.toHaveClass( 'NP-Overlay--open' );
+      expect( getByTestId( 'canvas' ) ).not.toHaveClass( 'NP-Canvas--open' );
+      expect( getByTestId( 'sidebar' ) ).not.toHaveClass( 'NP-Sidebar--open' );
+      expect( getByTestId( 'nav' ) ).not.toHaveClass( 'NP-Nav--open' );
     };
 
     const assertOpen = () => {
@@ -101,6 +107,12 @@ describe( 'when theme is passed', () => {
       expect( getByTestId( 'canvas' ) ).toHaveClass( 'Foo-Canvas' );
       expect( getByTestId( 'sidebar' ) ).toHaveClass( 'Foo-Sidebar' );
       expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav' );
+
+      expect( getByTestId( 'np' ) ).not.toHaveClass( 'Foo-NavPush--open' );
+      expect( getByTestId( 'overlay' ) ).not.toHaveClass( 'Foo-Overlay--open' );
+      expect( getByTestId( 'canvas' ) ).not.toHaveClass( 'Foo-Canvas--open' );
+      expect( getByTestId( 'sidebar' ) ).not.toHaveClass( 'Foo-Sidebar--open' );
+      expect( getByTestId( 'nav' ) ).not.toHaveClass( 'Foo-Nav--open' );
     };
 
     const assertOpen = () => {
@@ -136,7 +148,7 @@ describe( 'when theme is passed', () => {
 } );
 
 describe( 'when dim is disabled', () => {
-  it( 'does not render overlay', () => {
+  it( 'overlay is still clickable', () => {
     const NavPush = setup( {
       direction: 'foo'
     } );
@@ -145,10 +157,23 @@ describe( 'when dim is disabled', () => {
         <div>body</div>
       </NavPush>
     );
+    const assertOpen = () => {
+      expect( getByTestId( 'sidebar' ) ).toHaveClass(
+        'NP-Sidebar',
+        'NP-Sidebar--open'
+      );
+    };
+    const assertClosed = () => {
+      expect( container.querySelector( '.NP-Overlay' ) ).toBeInTheDocument();
+      expect( getByTestId( 'sidebar' ) ).toHaveClass( 'NP-Sidebar' );
+      expect( getByTestId( 'sidebar' ) ).not.toHaveClass( 'NP-Sidebar--open' );
+    };
 
+    assertClosed();
     fireEvent.click( getByTestId( 'hamburger' ) );
-
-    expect( container.querySelector( '.NP-Overlay' ) ).not.toBeInTheDocument();
+    assertOpen();
+    fireEvent.click( getByTestId( 'overlay' ) );
+    assertClosed();
   } );
 } );
 

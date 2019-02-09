@@ -36,7 +36,7 @@ const factory = strategy => {
       };
 
       this.toggle = this.toggle.bind( this );
-      this.handleCanvasClick = this.handleCanvasClick.bind( this );
+      this.handleOverlayClick = this.handleOverlayClick.bind( this );
       this.sidebarRef = React.createRef();
       this.navRef = React.createRef();
     }
@@ -53,7 +53,7 @@ const factory = strategy => {
       } );
     }
 
-    handleCanvasClick() {
+    handleOverlayClick() {
       if ( !this.state.isOpen ) {
         return;
       }
@@ -80,7 +80,6 @@ const factory = strategy => {
         >
           <Canvas
             attrs={ this.props.canvasAttrs }
-            onClick={ this.handleCanvasClick }
             classes={ cx( {
               [theme['Canvas--open']]:
                 theme['Canvas--open'] && this.state.isOpen
@@ -109,23 +108,22 @@ const factory = strategy => {
           >
             {this.props.nav( this.state.isOpen, this.toggle )}
           </Nav>
-          {this.props.dim && (
-            <Overlay
-              attrs={ this.props.overlayAttrs }
-              onClick={ this.handleCanvasClick }
-              classes={ cx( {
-                [theme['Overlay--open']]:
-                  theme['Overlay--open'] && this.state.isOpen
-              } ) }
-              styles={
-                this.state.isMounted
-                  ? strategy.overlay.getStyles( strategyParams )
-                  : undefined
-              }
-              theme={ theme }
-              isActive={ this.state.isOpen }
-            />
-          )}
+          <Overlay
+            attrs={ this.props.overlayAttrs }
+            onClick={ this.handleOverlayClick }
+            classes={ cx( {
+              [theme['Overlay--dim']]: theme['Overlay--dim'] && this.props.dim,
+              [theme['Overlay--open']]:
+                theme['Overlay--open'] && this.state.isOpen
+            } ) }
+            styles={
+              this.state.isMounted
+                ? strategy.overlay.getStyles( strategyParams )
+                : undefined
+            }
+            theme={ theme }
+            isActive={ this.state.isOpen }
+          />
           <Sidebar
             attrs={ this.props.sidebarAttrs }
             ref={ this.sidebarRef }
