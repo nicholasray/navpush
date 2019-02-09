@@ -5,6 +5,14 @@ module.exports = {
     author: 'Nicholas Ray'
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-eslint`,
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public|dist)/,
+        stages: [ 'develop' ]
+      }
+    },
     'gatsby-plugin-webpack-size',
     {
       resolve: `gatsby-plugin-sass`,

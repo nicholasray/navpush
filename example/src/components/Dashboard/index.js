@@ -3,19 +3,15 @@ import * as navpush from 'navpush';
 import OverlayLeftTheme from 'navpush/dist/styles/OverlayLeft.module.scss';
 import OverlayRightTheme from 'navpush/dist/styles/OverlayRight.module.scss';
 import OverlayTopTheme from 'navpush/dist/styles/OverlayTop.module.scss';
-import OverlayBottomTheme from 'navpush/dist/styles/OverlayBottom.module.scss';
 import PushLeftTheme from 'navpush/dist/styles/PushLeft.module.scss';
 import PushRightTheme from 'navpush/dist/styles/PushRight.module.scss';
 import PushTopTheme from 'navpush/dist/styles/PushTop.module.scss';
-import PushBottomTheme from 'navpush/dist/styles/PushBottom.module.scss';
 import FullLeftTheme from 'navpush/dist/styles/FullLeft.module.scss';
 import FullRightTheme from 'navpush/dist/styles/FullRight.module.scss';
 import FullTopTheme from 'navpush/dist/styles/FullTop.module.scss';
-import FullBottomTheme from 'navpush/dist/styles/FullBottom.module.scss';
 import UncoverLeftTheme from 'navpush/dist/styles/UncoverLeft.module.scss';
 import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
 import UncoverTopTheme from 'navpush/dist/styles/UncoverTop.module.scss';
-import UncoverBottomTheme from 'navpush/dist/styles/UncoverBottom.module.scss';
 import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
 import Button from '../Button';
 import cx from 'classnames';
@@ -26,19 +22,15 @@ function generateComponents() {
     OverlayLeftTheme,
     OverlayRightTheme,
     OverlayTopTheme,
-    OverlayBottomTheme,
     PushLeftTheme,
     PushRightTheme,
     PushTopTheme,
-    PushBottomTheme,
     FullLeftTheme,
     FullRightTheme,
     FullTopTheme,
-    FullBottomTheme,
     UncoverLeftTheme,
     UncoverRightTheme,
-    UncoverTopTheme,
-    UncoverBottomTheme
+    UncoverTopTheme
   };
   const strategies = {};
 

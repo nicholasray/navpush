@@ -29,12 +29,6 @@ h6 {
   font-family: $family-heading;
 }
 
-#___gatsby {
-  height: 100%;
-  overflow-x: hidden;
-  position: relative;
-}
-
 @import 'bulma/sass/utilities/_all.sass';
 @import 'bulma/sass/base/_all.sass';
 @import 'bulma/sass/elements/title.sass';

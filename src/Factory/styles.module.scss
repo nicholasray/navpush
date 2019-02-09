@@ -1,8 +1,13 @@
 .NavPush {
+  overflow-x: hidden;
   position: relative;
   z-index: 0;
 }
 
 .NavPush--open {
-  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+  overflow: hidden;
+  min-height: 100%;
+  height: auto !important;
 }

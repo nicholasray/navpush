@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO( { description, lang, meta, keywords, title } ) {
   return (
     <StaticQuery
-      query={detailsQuery}
-      render={data => {
+      query={ detailsQuery }
+      render={ data => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         return (
           <Helmet
-            htmlAttributes={{
+            htmlAttributes={ {
               lang
-            }}
-            title={title}
-            titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-            meta={[
+            } }
+            title={ title }
+            titleTemplate={ `%s | ${data.site.siteMetadata.title}` }
+            meta={ [
               {
                 name: `description`,
                 content: metaDescription
@@ -55,14 +55,14 @@ function SEO({ description, lang, meta, keywords, title }) {
                 keywords.length > 0
                   ? {
                     name: `keywords`,
-                    content: keywords.join(`, `)
+                    content: keywords.join( `, ` )
                   }
                   : []
               )
-              .concat(meta)}
+              .concat( meta ) }
           />
         );
-      }}
+      } }
     />
   );
 }
@@ -77,7 +77,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
+  keywords: PropTypes.arrayOf( PropTypes.string ),
   title: PropTypes.string.isRequired
 };
 

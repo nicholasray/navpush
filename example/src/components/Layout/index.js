@@ -3,6 +3,6 @@ import './styles.scss';
 import 'typeface-aleo';
 import 'typeface-roboto';
 
-const Layout = ({ children }) => <>{children}</>;
+const Layout = ( { children } ) => <>{children}</>;
 
 export default Layout;
