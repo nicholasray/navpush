@@ -117,9 +117,9 @@ class Dashboard extends React.Component {
     return (
       <NavPush
         theme={ theme }
-        nav={ ( isOpen, toggle ) => (
+        header={ ( isOpen, toggle ) => (
           <div className="container">
-            <div className={ pageTheme.Nav__items }>
+            <div className={ pageTheme.Header__items }>
               navpush
               <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
             </div>

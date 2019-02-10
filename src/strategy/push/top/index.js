@@ -2,7 +2,7 @@ import setup from '../../../Factory';
 
 export default setup( {
   direction: 'top',
-  nav: {
+  header: {
     getStyles( { sidebar, props, isOpen } ) {
       if ( !isOpen ) return {};
 

@@ -4,19 +4,19 @@ import 'jest-dom/extend-expect';
 import Hamburger from '../Hamburger';
 import setup from './index';
 import Sidebar from '../Sidebar';
-import Nav from '../Nav';
+import Header from '../Header';
 let props;
 
 beforeEach( () => {
   props = {
     attrs: { 'data-testid': 'np' },
-    nav: ( isOpen, toggle ) => (
+    header: ( isOpen, toggle ) => (
       <div>
         <div>Nav content</div>
         <Hamburger onClick={ toggle } attrs={ { 'data-testid': 'hamburger' } } />
       </div>
     ),
-    navAttrs: { 'data-testid': 'nav' },
+    headerAttrs: { 'data-testid': 'header' },
     sidebar: () => <div>Sidebar content</div>,
     sidebarAttrs: { 'data-testid': 'sidebar' },
     overlayAttrs: { 'data-testid': 'overlay' },
@@ -40,13 +40,13 @@ describe( 'when theme is not passed', () => {
       expect( getByTestId( 'overlay' ) ).toHaveClass( 'NP-Overlay' );
       expect( getByTestId( 'canvas' ) ).toHaveClass( 'NP-Canvas' );
       expect( getByTestId( 'sidebar' ) ).toHaveClass( 'NP-Sidebar' );
-      expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav' );
+      expect( getByTestId( 'header' ) ).toHaveClass( 'NP-Header' );
 
       expect( getByTestId( 'np' ) ).not.toHaveClass( 'NP-NavPush--open' );
       expect( getByTestId( 'overlay' ) ).not.toHaveClass( 'NP-Overlay--open' );
       expect( getByTestId( 'canvas' ) ).not.toHaveClass( 'NP-Canvas--open' );
       expect( getByTestId( 'sidebar' ) ).not.toHaveClass( 'NP-Sidebar--open' );
-      expect( getByTestId( 'nav' ) ).not.toHaveClass( 'NP-Nav--open' );
+      expect( getByTestId( 'header' ) ).not.toHaveClass( 'NP-Header--open' );
     };
 
     const assertOpen = () => {
@@ -60,7 +60,7 @@ describe( 'when theme is not passed', () => {
         'NP-Sidebar',
         'NP-Sidebar--open'
       );
-      expect( getByTestId( 'nav' ) ).toHaveClass( 'NP-Nav', 'NP-Nav--open' );
+      expect( getByTestId( 'header' ) ).toHaveClass( 'NP-Header', 'NP-Header--open' );
     };
 
     // Check that clicking hamburger can open/close
@@ -92,8 +92,8 @@ describe( 'when theme is passed', () => {
       'Canvas--open': 'Foo-Canvas--open',
       Sidebar: 'Foo-Sidebar',
       'Sidebar--open': 'Foo-Sidebar--open',
-      Nav: 'Foo-Nav',
-      'Nav--open': 'Foo-Nav--open'
+      Header: 'Foo-Header',
+      'Header--open': 'Foo-Header--open'
     };
     const { getByTestId } = render(
       <NavPush { ...props } theme={ theme }>
@@ -106,13 +106,13 @@ describe( 'when theme is passed', () => {
       expect( getByTestId( 'overlay' ) ).toHaveClass( 'Foo-Overlay' );
       expect( getByTestId( 'canvas' ) ).toHaveClass( 'Foo-Canvas' );
       expect( getByTestId( 'sidebar' ) ).toHaveClass( 'Foo-Sidebar' );
-      expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav' );
+      expect( getByTestId( 'header' ) ).toHaveClass( 'Foo-Header' );
 
       expect( getByTestId( 'np' ) ).not.toHaveClass( 'Foo-NavPush--open' );
       expect( getByTestId( 'overlay' ) ).not.toHaveClass( 'Foo-Overlay--open' );
       expect( getByTestId( 'canvas' ) ).not.toHaveClass( 'Foo-Canvas--open' );
       expect( getByTestId( 'sidebar' ) ).not.toHaveClass( 'Foo-Sidebar--open' );
-      expect( getByTestId( 'nav' ) ).not.toHaveClass( 'Foo-Nav--open' );
+      expect( getByTestId( 'header' ) ).not.toHaveClass( 'Foo-Header--open' );
     };
 
     const assertOpen = () => {
@@ -129,7 +129,7 @@ describe( 'when theme is passed', () => {
         'Foo-Sidebar',
         'Foo-Sidebar--open'
       );
-      expect( getByTestId( 'nav' ) ).toHaveClass( 'Foo-Nav', 'Foo-Nav--open' );
+      expect( getByTestId( 'header' ) ).toHaveClass( 'Foo-Header', 'Foo-Header--open' );
     };
 
     // Check that clicking hamburger can open/close
@@ -182,11 +182,11 @@ describe( 'when strategy includes inline styles', () => {
     const passedProps = props;
     const NavPush = setup( {
       direction: 'foo',
-      nav: {
-        getStyles( { sidebar, nav, props, isOpen } ) {
+      header: {
+        getStyles( { sidebar, header, props, isOpen } ) {
           if ( !isOpen ) {
             expect( sidebar ).toBeInstanceOf( Sidebar );
-            expect( nav ).toBeInstanceOf( Nav );
+            expect( header ).toBeInstanceOf( Header );
             expect( props ).toMatchObject( passedProps );
 
             return {
@@ -195,7 +195,7 @@ describe( 'when strategy includes inline styles', () => {
           }
 
           expect( sidebar ).toBeInstanceOf( Sidebar );
-          expect( nav ).toBeInstanceOf( Nav );
+          expect( header ).toBeInstanceOf( Header );
           expect( props ).toMatchObject( passedProps );
 
           return {
@@ -204,10 +204,10 @@ describe( 'when strategy includes inline styles', () => {
         }
       },
       sidebar: {
-        getStyles( { sidebar, nav, props, isOpen } ) {
+        getStyles( { sidebar, header, props, isOpen } ) {
           if ( !isOpen ) {
             expect( sidebar ).toBeInstanceOf( Sidebar );
-            expect( nav ).toBeInstanceOf( Nav );
+            expect( header ).toBeInstanceOf( Header );
             expect( props ).toMatchObject( passedProps );
 
             return {
@@ -216,7 +216,7 @@ describe( 'when strategy includes inline styles', () => {
           }
 
           expect( sidebar ).toBeInstanceOf( Sidebar );
-          expect( nav ).toBeInstanceOf( Nav );
+          expect( header ).toBeInstanceOf( Header );
           expect( props ).toMatchObject( passedProps );
 
           return {
@@ -225,10 +225,10 @@ describe( 'when strategy includes inline styles', () => {
         }
       },
       overlay: {
-        getStyles( { sidebar, nav, props, isOpen } ) {
+        getStyles( { sidebar, header, props, isOpen } ) {
           if ( !isOpen ) {
             expect( sidebar ).toBeInstanceOf( Sidebar );
-            expect( nav ).toBeInstanceOf( Nav );
+            expect( header ).toBeInstanceOf( Header );
             expect( props ).toMatchObject( passedProps );
 
             return {
@@ -238,7 +238,7 @@ describe( 'when strategy includes inline styles', () => {
 
           expect( props ).toMatchObject( passedProps );
           expect( sidebar ).toBeInstanceOf( Sidebar );
-          expect( nav ).toBeInstanceOf( Nav );
+          expect( header ).toBeInstanceOf( Header );
 
           return {
             transform: `translateX(300px)`
@@ -246,7 +246,7 @@ describe( 'when strategy includes inline styles', () => {
         }
       },
       canvas: {
-        getStyles( { sidebar, nav, props, isOpen } ) {
+        getStyles( { sidebar, header, props, isOpen } ) {
           if ( !isOpen ) {
             expect( props ).toMatchObject( passedProps );
 
@@ -257,7 +257,7 @@ describe( 'when strategy includes inline styles', () => {
 
           expect( props ).toMatchObject( passedProps );
           expect( sidebar ).toBeInstanceOf( Sidebar );
-          expect( nav ).toBeInstanceOf( Nav );
+          expect( header ).toBeInstanceOf( Header );
 
           return {
             transform: `translateX(400px)`
@@ -272,14 +272,14 @@ describe( 'when strategy includes inline styles', () => {
     );
 
     const assertClosed = () => {
-      expect( getByTestId( 'nav' ) ).toHaveStyle( 'transform: translateX(10px)' );
+      expect( getByTestId( 'header' ) ).toHaveStyle( 'transform: translateX(10px)' );
       expect( getByTestId( 'sidebar' ) ).toHaveStyle( 'transform: translateX(20px)' );
       expect( getByTestId( 'overlay' ) ).toHaveStyle( 'transform: translateX(30px)' );
       expect( getByTestId( 'canvas' ) ).toHaveStyle( 'transform: translateX(40px)' );
     };
 
     const assertOpen = () => {
-      expect( getByTestId( 'nav' ) ).toHaveStyle( 'transform: translateX(100px)' );
+      expect( getByTestId( 'header' ) ).toHaveStyle( 'transform: translateX(100px)' );
       expect( getByTestId( 'sidebar' ) ).toHaveStyle(
         'transform: translateX(200px)'
       );

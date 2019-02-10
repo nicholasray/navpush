@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-class Nav extends React.Component {
+class Header extends React.Component {
   constructor( props ) {
     super( props );
 
@@ -25,7 +25,7 @@ class Nav extends React.Component {
         { ...attrs }
         ref={ this.ref }
         style={ styles }
-        className={ cx( theme.Nav, classes ) }
+        className={ cx( theme.Header, classes ) }
       >
         {children}
       </div>
@@ -33,7 +33,7 @@ class Nav extends React.Component {
   }
 }
 
-Nav.propTypes = {
+Header.propTypes = {
   attrs: PropTypes.object,
   theme: PropTypes.object,
   styles: PropTypes.object,
@@ -41,11 +41,11 @@ Nav.propTypes = {
   children: PropTypes.element
 };
 
-Nav.defaultProps = {
+Header.defaultProps = {
   theme: {
-    Nav: 'NP-Nav'
+    Header: 'NP-Header'
   },
   attrs: {}
 };
 
-export default Nav;
+export default Header;
