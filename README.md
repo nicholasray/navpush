@@ -68,6 +68,9 @@ class ExampleSite extends Component {
 
 export default ExampleSite;
 ```
+
+## Styling
+
 [CSS Modules](https://github.com/css-modules/css-modules) are supported through
 the theme prop
 ```jsx
