@@ -10,7 +10,7 @@
   "jsnext:main": "dist/index.es.js",
   "engines": {
     "node": ">=10",
-    "npm": ">=6.7"
+    "npm": ">=6.8"
   },
   "scripts": {
     "test": "jest",
