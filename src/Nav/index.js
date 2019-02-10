@@ -21,14 +21,14 @@ class Nav extends React.Component {
     const { attrs, theme, styles, classes, children } = this.props;
 
     return (
-      <nav
+      <div
         { ...attrs }
         ref={ this.ref }
         style={ styles }
         className={ cx( theme.Nav, classes ) }
       >
         {children}
-      </nav>
+      </div>
     );
   }
 }

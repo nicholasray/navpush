@@ -36,7 +36,6 @@ const factory = strategy => {
       };
 
       this.toggle = this.toggle.bind( this );
-      this.handleOverlayClick = this.handleOverlayClick.bind( this );
       this.sidebarRef = React.createRef();
       this.navRef = React.createRef();
     }
@@ -47,18 +46,19 @@ const factory = strategy => {
       } );
     }
 
+    componentWillUnmount() {
+      // in case we unmount when the overlay is open
+      window.removeEventListener( 'scroll', this.toggle );
+    }
+
     toggle() {
+      this.state.isOpen
+        ? window.removeEventListener( 'scroll', this.toggle )
+        : window.addEventListener( 'scroll', this.toggle );
+
       this.setState( {
         isOpen: !this.state.isOpen
       } );
-    }
-
-    handleOverlayClick() {
-      if ( !this.state.isOpen ) {
-        return;
-      }
-
-      this.toggle();
     }
 
     render() {
@@ -109,8 +109,9 @@ const factory = strategy => {
             {this.props.nav( this.state.isOpen, this.toggle )}
           </Nav>
           <Overlay
+            onTouchStart={ this.state.isOpen ? this.toggle : undefined }
+            onClick={ this.state.isOpen ? this.toggle : undefined }
             attrs={ this.props.overlayAttrs }
-            onClick={ this.handleOverlayClick }
             classes={ cx( {
               [theme['Overlay--dim']]: theme['Overlay--dim'] && this.props.dim,
               [theme['Overlay--open']]:

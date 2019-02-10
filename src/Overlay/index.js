@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-const Overlay = ( { attrs, classes, styles, onClick, isActive, theme } ) => {
+const Overlay = ( { attrs, classes, styles, onClick, onTouchStart, theme } ) => {
   return (
     <div
       { ...attrs }
+      onTouchStart={ onTouchStart }
       onClick={ onClick }
       style={ styles }
       className={ cx( theme.Overlay, classes ) }
@@ -18,7 +19,7 @@ Overlay.propTypes = {
   classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
   styles: PropTypes.object,
   onClick: PropTypes.func,
-  isActive: PropTypes.bool,
+  onTouchStart: PropTypes.func,
   theme: PropTypes.object
 };
 

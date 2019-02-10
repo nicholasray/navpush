@@ -9,10 +9,10 @@
 }
 
 .Sidebar {
+  height: 100%;
   top: 0;
   right: -$width;
   width: $width;
-  height: calc(100% + 60px);
 }
 
 .Sidebar.Sidebar--open {
