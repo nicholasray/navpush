@@ -2,7 +2,7 @@
 
 > 
 
-[![NPM](https://img.shields.io/npm/v/navpush.svg)](https://www.npmjs.com/package/navpush) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![](https://img.shields.io/travis/com/nicholasray/navpush.svg?style=flat) [![NPM](https://img.shields.io/npm/v/navpush.svg)](https://www.npmjs.com/package/navpush) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
