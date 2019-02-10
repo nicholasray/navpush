@@ -1,9 +1,4 @@
 import {
-  top as FullTop,
-  left as FullLeft,
-  right as FullRight
-} from './strategy/full';
-import {
   top as OverlayTop,
   left as OverlayLeft,
   right as OverlayRight
@@ -22,9 +17,6 @@ import Hamburger from './Hamburger';
 
 export {
   Hamburger,
-  FullLeft,
-  FullRight,
-  FullTop,
   OverlayLeft,
   OverlayRight,
   OverlayTop,

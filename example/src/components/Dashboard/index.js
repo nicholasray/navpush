@@ -6,9 +6,6 @@ import OverlayTopTheme from 'navpush/dist/styles/OverlayTop.module.scss';
 import PushLeftTheme from 'navpush/dist/styles/PushLeft.module.scss';
 import PushRightTheme from 'navpush/dist/styles/PushRight.module.scss';
 import PushTopTheme from 'navpush/dist/styles/PushTop.module.scss';
-import FullLeftTheme from 'navpush/dist/styles/FullLeft.module.scss';
-import FullRightTheme from 'navpush/dist/styles/FullRight.module.scss';
-import FullTopTheme from 'navpush/dist/styles/FullTop.module.scss';
 import UncoverLeftTheme from 'navpush/dist/styles/UncoverLeft.module.scss';
 import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
 import UncoverTopTheme from 'navpush/dist/styles/UncoverTop.module.scss';
@@ -25,9 +22,6 @@ function generateComponents() {
     PushLeftTheme,
     PushRightTheme,
     PushTopTheme,
-    FullLeftTheme,
-    FullRightTheme,
-    FullTopTheme,
     UncoverLeftTheme,
     UncoverRightTheme,
     UncoverTopTheme
