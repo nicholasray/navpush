@@ -1,10 +1,10 @@
 @import '../styles.module.scss';
 
-.Canvas.Canvas--open {
+.Canvas--open {
   transform: translate3d(-$width, 0, 0);
 }
 
-.Nav.Nav--open {
+.Nav--open {
   transform: translate3d(-$width, 0, 0);
 }
 
@@ -15,6 +15,6 @@
   width: $width;
 }
 
-.Sidebar.Sidebar--open {
+.Sidebar--open {
   transform: translate3d(-$width, 0, 0);
 }
