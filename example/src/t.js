@@ -1,18 +1,3 @@
-# navpush
-
-> 
-
-![](https://img.shields.io/travis/com/nicholasray/navpush.svg?style=flat) [![NPM](https://img.shields.io/npm/v/navpush.svg)](https://www.npmjs.com/package/navpush) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-## Install
-
-```bash
-npm install --save navpush
-```
-
-## Example
-
-```jsx
 import React, { Component } from 'react';
 
 import 'navpush/styles/Hamburger.css';
@@ -67,42 +52,3 @@ class ExampleSite extends Component {
 }
 
 export default ExampleSite;
-```
-[CSS Modules](https://github.com/css-modules/css-modules) are supported through
-the theme prop
-```jsx
-  <PushRight
-    theme= { PushRightTheme }
-    header={ ( isOpen, toggle ) => (
-      <div>
-        <a className="logo" href="/">Name of site</a>
-        <Hamburger theme={ HamburgerTheme } onClick={ toggle } />
-      </div>
-    ) }
-    nav={ ( isOpen, toggle ) => (
-      <ul>
-        <li>
-          <a href="/Features">Features</a>
-        </li>
-        <li>
-          <a href="/About">About</a>
-        </li>
-        <li>
-          <a href="/Contact">Contact</a>
-        </li>
-      </ul>
-    ) }
-  >
-    // Place your page's content as a child of navpush
-    <section className="hero">Hello World!</section>
-  </PushRight>
-    );
-  }
-}
-
-export default ExampleSite;
-```
-
-## License
-
-MIT
