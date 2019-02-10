@@ -22,7 +22,8 @@
     "buildJs:watch": "rollup -c -w",
     "clean": "rm -rf dist && mkdir dist",
     "start": "npm run clean && concurrently --kill-others \"npm run buildJs:watch\" \"npm run buildCss:watch\"",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
