@@ -125,10 +125,8 @@ class Dashboard extends React.Component {
             </div>
           </div>
         ) }
-        sidebar={ ( isOpen, toggle ) => (
-          <div className={ pageTheme.SidebarInner }>
-            You can put anything in here
-          </div>
+        nav={ ( isOpen, toggle ) => (
+          <div className={ pageTheme.NavInner }>You can put anything in here</div>
         ) }
       >
         <section className="hero is-primary is-fullheight">
