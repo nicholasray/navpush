@@ -10,7 +10,7 @@
 npm install --save navpush
 ```
 
-## Usage
+## Example
 
 ```jsx
 import React, { Component } from 'react';
