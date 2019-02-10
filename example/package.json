@@ -7,10 +7,10 @@
   "dependencies": {
     "bulma": "github:jgthms/bulma",
     "classnames": "^2.2.6",
-    "gatsby": "^2.0.114",
+    "gatsby": "^2.0.118",
     "gatsby-image": "^2.0.26",
     "gatsby-plugin-manifest": "^2.0.13",
-    "gatsby-plugin-offline": "^2.0.21",
+    "gatsby-plugin-offline": "^2.0.23",
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sass": "^2.0.7",
     "gatsby-plugin-sharp": "^2.0.17",
@@ -19,8 +19,8 @@
     "navpush": "file:..",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-helmet": "^5.2.0",
     "typeface-aleo": "0.0.44",
     "typeface-roboto": "0.0.54"
