@@ -43,7 +43,7 @@ class ExampleSite extends Component {
           </ul>
         ) }
       >
-        // Place your page's content here
+        // Place your page's content as a child of navpush
         <section className="hero">Hello World!</section>
       </PushRight>
     );
