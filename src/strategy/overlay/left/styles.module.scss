@@ -1,12 +1,12 @@
 @import '../styles.module.scss';
 
-.Sidebar {
+.Nav {
   top: 0;
   left: -$width;
   width: $width;
   height: 100%;
 }
 
-.Sidebar--open {
+.Nav--open {
   transform: translate3d($width, 0, 0);
 }

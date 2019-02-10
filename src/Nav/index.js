@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-class Sidebar extends React.Component {
+class Nav extends React.Component {
   constructor( props ) {
     super( props );
 
@@ -21,14 +21,14 @@ class Sidebar extends React.Component {
     const { attrs, theme, children, classes, styles } = this.props;
 
     return (
-      <div { ...attrs } ref={ this.ref } style={ styles } className={ cx( theme.Sidebar, classes ) }>
+      <div { ...attrs } ref={ this.ref } style={ styles } className={ cx( theme.Nav, classes ) }>
         {children}
       </div>
     );
   }
 }
 
-Sidebar.propTypes = {
+Nav.propTypes = {
   attrs: PropTypes.object,
   theme: PropTypes.object,
   children: PropTypes.element,
@@ -36,11 +36,11 @@ Sidebar.propTypes = {
   styles: PropTypes.object
 };
 
-Sidebar.defaultProps = {
+Nav.defaultProps = {
   theme: {
-    Sidebar: 'NP-Sidebar'
+    Nav: 'NP-Nav'
   },
   attrs: {}
 };
 
-export default Sidebar;
+export default Nav;

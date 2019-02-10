@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Sidebar from '../Sidebar';
+import Nav from '../Nav';
 import Header from '../Header';
 import Canvas from '../Canvas';
 import Overlay from '../Overlay';
@@ -13,7 +13,7 @@ const factory = strategy => {
       header: {
         getStyles() {}
       },
-      sidebar: {
+      nav: {
         getStyles() {}
       },
       canvas: {
@@ -36,7 +36,7 @@ const factory = strategy => {
       };
 
       this.toggle = this.toggle.bind( this );
-      this.sidebarRef = React.createRef();
+      this.navRef = React.createRef();
       this.headerRef = React.createRef();
     }
 
@@ -64,7 +64,7 @@ const factory = strategy => {
     render() {
       const theme = this.props.theme;
       const strategyParams = {
-        sidebar: this.sidebarRef.current,
+        nav: this.navRef.current,
         header: this.headerRef.current,
         props: this.props,
         isOpen: this.state.isOpen
@@ -125,22 +125,22 @@ const factory = strategy => {
             theme={ theme }
             isActive={ this.state.isOpen }
           />
-          <Sidebar
-            attrs={ this.props.sidebarAttrs }
-            ref={ this.sidebarRef }
+          <Nav
+            attrs={ this.props.navAttrs }
+            ref={ this.navRef }
             classes={ cx( {
-              [theme['Sidebar--open']]:
-                theme['Sidebar--open'] && this.state.isOpen
+              [theme['Nav--open']]:
+                theme['Nav--open'] && this.state.isOpen
             } ) }
             styles={
               this.state.isMounted
-                ? strategy.sidebar.getStyles( strategyParams )
+                ? strategy.nav.getStyles( strategyParams )
                 : undefined
             }
             theme={ theme }
           >
-            {this.props.sidebar( this.state.isOpen, this.toggle )}
-          </Sidebar>
+            {this.props.nav( this.state.isOpen, this.toggle )}
+          </Nav>
         </div>
       );
     }
@@ -151,10 +151,10 @@ const factory = strategy => {
   NavPush.propTypes = {
     dim: PropTypes.bool,
     header: PropTypes.func.isRequired,
-    sidebar: PropTypes.func.isRequired,
+    nav: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
+    headerAttrs: PropTypes.object,
     navAttrs: PropTypes.object,
-    sidebarAttrs: PropTypes.object,
     overlayAttrs: PropTypes.object,
     canvasAttrs: PropTypes.object
   };
@@ -166,12 +166,12 @@ const factory = strategy => {
         NavPush: 'NP-NavPush',
         'NavPush--open': 'NP-NavPush--open',
         'Header--open': 'NP-Header--open',
-        'Sidebar--open': 'NP-Sidebar--open',
+        'Nav--open': 'NP-Nav--open',
         'Overlay--open': `NP-Overlay--open`,
         'Canvas--open': 'NP-Canvas--open'
       },
       Header.defaultProps.theme,
-      Sidebar.defaultProps.theme,
+      Nav.defaultProps.theme,
       Overlay.defaultProps.theme,
       Canvas.defaultProps.theme
     )

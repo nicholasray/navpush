@@ -8,13 +8,13 @@
   transform: translate3d(-$width, 0, 0);
 }
 
-.Sidebar {
+.Nav {
   height: 100%;
   top: 0;
   right: -$width;
   width: $width;
 }
 
-.Sidebar--open {
+.Nav--open {
   transform: translate3d(-$width, 0, 0);
 }

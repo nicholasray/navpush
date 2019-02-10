@@ -1,4 +1,4 @@
-.Sidebar {
+.Nav {
   position: fixed;
   background: #fff;
   transition: transform $transitionDuration ease,
@@ -6,6 +6,6 @@
   visibility: hidden;
 }
 
-.Sidebar--open {
+.Nav--open {
   visibility: visible;
 }
