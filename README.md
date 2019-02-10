@@ -13,19 +13,46 @@ npm install --save navpush
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MyComponent from 'navpush'
+import 'navpush/styles/Hamburger.css';
+import 'navpush/styles/PushRight.css';
+import { PushRight, Hamburger } from 'navpush';
 
-class Example extends Component {
-  render () {
+class ExampleSite extends Component {
+  render() {
     return (
-      <MyComponent />
-    )
+      // navpush should go at the top of your body
+      <PushRight
+        header={ ( isOpen, toggle ) => (
+          <div>
+            <Hamburger onClick={ toggle } />
+          </div>
+        ) }
+        nav={ ( isOpen, toggle ) => (
+          <ul>
+            <li>
+              <a href="/Features">Features</a>
+            </li>
+            <li>
+              <a href="/Contact">Contact</a>
+            </li>
+            <li>
+              <a href="/About">About</a>
+            </li>
+          </ul>
+        ) }
+      >
+        // Place your page's content here
+        <section className="hero">Hello World!</section>
+      </PushRight>
+    );
   }
 }
+
+export default ExampleSite;
 ```
 
 ## License
 
-MIT © [nicholasray](https://github.com/nicholasray)
+MIT
