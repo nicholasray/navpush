@@ -67,3 +67,7 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Netlify/npm doesn't handle local module resolution well so temporarily remove
+# package-lock.json from git index
+package-lock.json
