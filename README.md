@@ -22,30 +22,35 @@ import { PushRight, Hamburger } from 'navpush';
 class ExampleSite extends Component {
   render() {
     return (
-      // navpush should go at the top of your body
-      <PushRight
-        header={ ( isOpen, toggle ) => (
-          <div>
-            <Hamburger onClick={ toggle } />
-          </div>
-        ) }
-        nav={ ( isOpen, toggle ) => (
-          <ul>
-            <li>
-              <a href="/Features">Features</a>
-            </li>
-            <li>
-              <a href="/Contact">Contact</a>
-            </li>
-            <li>
-              <a href="/About">About</a>
-            </li>
-          </ul>
-        ) }
-      >
-        // Place your page's content as a child of navpush
-        <section className="hero">Hello World!</section>
-      </PushRight>
+      <html>
+        <body>
+          // navpush should go at the top of your body
+          <PushRight
+            header={ ( isOpen, toggle ) => (
+              <div>
+                <a className="logo" href="/">Name of site</a>
+                <Hamburger onClick={ toggle } />
+              </div>
+            ) }
+            nav={ ( isOpen, toggle ) => (
+              <ul>
+                <li>
+                  <a href="/Features">Features</a>
+                </li>
+                <li>
+                  <a href="/About">About</a>
+                </li>
+                <li>
+                  <a href="/Contact">Contact</a>
+                </li>
+              </ul>
+            ) }
+          >
+            // Place your page's content as a child of navpush
+            <section className="hero">Hello World!</section>
+          </PushRight>
+        </body>
+      </html>
     );
   }
 }
