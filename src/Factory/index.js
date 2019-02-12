@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from '../Nav';
-import Header from '../Header';
+import Fixbox from '../Fixbox';
 import Canvas from '../Canvas';
 import Overlay from '../Overlay';
 import cx from 'classnames';
@@ -10,7 +10,7 @@ const factory = strategy => {
   strategy = Object.assign(
     {
       direction: '',
-      header: {
+      fixbox: {
         getStyles() {}
       },
       nav: {
@@ -37,7 +37,7 @@ const factory = strategy => {
 
       this.toggle = this.toggle.bind( this );
       this.navRef = React.createRef();
-      this.headerRef = React.createRef();
+      this.fixboxRef = React.createRef();
     }
 
     componentDidMount() {
@@ -65,7 +65,7 @@ const factory = strategy => {
       const theme = this.props.theme;
       const strategyParams = {
         nav: this.navRef.current,
-        header: this.headerRef.current,
+        fixbox: this.fixboxRef.current,
         props: this.props,
         isOpen: this.state.isOpen
       };
@@ -93,21 +93,21 @@ const factory = strategy => {
           >
             {this.props.children}
           </Canvas>
-          <Header
-            attrs={ this.props.headerAttrs }
-            ref={ this.headerRef }
+          <Fixbox
+            attrs={ this.props.fixboxAttrs }
+            ref={ this.fixboxRef }
             classes={ cx( {
-              [theme['Header--open']]: theme['Header--open'] && this.state.isOpen
+              [theme['Fixbox--open']]: theme['Fixbox--open'] && this.state.isOpen
             } ) }
             styles={
               this.state.isMounted
-                ? strategy.header.getStyles( strategyParams )
+                ? strategy.fixbox.getStyles( strategyParams )
                 : undefined
             }
             theme={ theme }
           >
-            {this.props.header( this.state.isOpen, this.toggle )}
-          </Header>
+            {this.props.fixbox( this.state.isOpen, this.toggle )}
+          </Fixbox>
           <Overlay
             onTouchStart={ this.state.isOpen ? this.toggle : undefined }
             onClick={ this.state.isOpen ? this.toggle : undefined }
@@ -150,10 +150,10 @@ const factory = strategy => {
 
   NavPush.propTypes = {
     dim: PropTypes.bool,
-    header: PropTypes.func.isRequired,
+    fixbox: PropTypes.func.isRequired,
     nav: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
-    headerAttrs: PropTypes.object,
+    fixboxAttrs: PropTypes.object,
     navAttrs: PropTypes.object,
     overlayAttrs: PropTypes.object,
     canvasAttrs: PropTypes.object
@@ -165,12 +165,12 @@ const factory = strategy => {
       {
         NavPush: 'NP-NavPush',
         'NavPush--open': 'NP-NavPush--open',
-        'Header--open': 'NP-Header--open',
+        'Fixbox--open': 'NP-Fixbox--open',
         'Nav--open': 'NP-Nav--open',
         'Overlay--open': `NP-Overlay--open`,
         'Canvas--open': 'NP-Canvas--open'
       },
-      Header.defaultProps.theme,
+      Fixbox.defaultProps.theme,
       Nav.defaultProps.theme,
       Overlay.defaultProps.theme,
       Canvas.defaultProps.theme

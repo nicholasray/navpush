@@ -2,7 +2,7 @@ import setup from '../../../Factory';
 
 export default setup( {
   direction: 'top',
-  header: {
+  fixbox: {
     getStyles( { nav, props, isOpen } ) {
       if ( !isOpen ) return {};
 

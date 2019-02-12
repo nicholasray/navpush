@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-class Header extends React.Component {
+class Fixbox extends React.Component {
   constructor( props ) {
     super( props );
 
@@ -25,7 +25,7 @@ class Header extends React.Component {
         { ...attrs }
         ref={ this.ref }
         style={ styles }
-        className={ cx( theme.Header, classes ) }
+        className={ cx( theme.Fixbox, classes ) }
       >
         {children}
       </div>
@@ -33,7 +33,7 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
+Fixbox.propTypes = {
   attrs: PropTypes.object,
   theme: PropTypes.object,
   styles: PropTypes.object,
@@ -41,11 +41,11 @@ Header.propTypes = {
   children: PropTypes.element
 };
 
-Header.defaultProps = {
+Fixbox.defaultProps = {
   theme: {
-    Header: 'NP-Header'
+    Fixbox: 'NP-Fixbox'
   },
   attrs: {}
 };
 
-export default Header;
+export default Fixbox;

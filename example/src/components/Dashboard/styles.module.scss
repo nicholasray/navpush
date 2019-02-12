@@ -1,4 +1,4 @@
-.Header__items {
+.Fixbox__items {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,4 +15,11 @@
 
 .NavInner {
   padding: 50px;
+}
+
+.Fixbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }

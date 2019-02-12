@@ -32,7 +32,7 @@ class ExampleSite extends Component {
             // navpush should go at the top of your body
           }
           <PushRight
-            header={ ( isOpen, toggle ) => (
+            fixbox={ ( isOpen, toggle ) => (
               <div>
                 <a className="logo" href="/">
                   Name of site
@@ -98,7 +98,7 @@ class ExampleSite extends Component {
           }
           <PushRight
             theme={ PushRightTheme }
-            header={ ( isOpen, toggle ) => (
+            fixbox={ ( isOpen, toggle ) => (
               <div>
                 <a className="logo" href="/">
                   Name of site
