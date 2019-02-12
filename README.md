@@ -79,6 +79,7 @@ export default ExampleSite;
 importing the `navpush/styles/*.module.scss` files of your choice and passing
 them to the relevant component(s) as props. Here is an example of using the
 `Hamburger` and `PushRight` themes
+
 ```jsx
 
 import React, { Component } from 'react';
