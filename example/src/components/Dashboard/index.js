@@ -118,14 +118,17 @@ class Dashboard extends React.Component {
       <NavPush
         theme={ theme }
         fixbox={ ( isOpen, toggle ) => (
-          <header className={ pageTheme.Fixbox }>
-            <div className="container">
-              <div className={ pageTheme.Fixbox__items }>
-                navpush
-                <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
+          <>
+            <header className={ pageTheme.Fixbox }>
+              <div className="container">
+                <div className={ pageTheme.Fixbox__items }>
+                  navpush
+                  <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
+            <div id={ pageTheme.foo } />
+          </>
         ) }
         nav={ ( isOpen, toggle ) => (
           <div className={ pageTheme.NavInner }>You can put anything in here</div>

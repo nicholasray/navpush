@@ -18,11 +18,12 @@ class Fixbox extends React.Component {
   }
 
   render() {
-    const { attrs, theme, styles, classes, children } = this.props;
+    const { attrs, theme, styles, classes, children, onTransitionEnd } = this.props;
 
     return (
       <div
         { ...attrs }
+        onTransitionEnd={ onTransitionEnd }
         ref={ this.ref }
         style={ styles }
         className={ cx( theme.Fixbox, classes ) }

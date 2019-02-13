@@ -32,9 +32,11 @@ const factory = strategy => {
 
       this.state = {
         isMounted: false,
-        isOpen: false
+        isOpen: false,
+        isFixboxTransitioning: false
       };
 
+      this.handleTransitionEnd = this.handleTransitionEnd.bind( this );
       this.toggle = this.toggle.bind( this );
       this.navRef = React.createRef();
       this.fixboxRef = React.createRef();
@@ -57,7 +59,14 @@ const factory = strategy => {
         : window.addEventListener( 'scroll', this.toggle );
 
       this.setState( {
+        isFixboxTransitioning: true,
         isOpen: !this.state.isOpen
+      } );
+    }
+
+    handleTransitionEnd() {
+      this.setState( {
+        isFixboxTransitioning: false
       } );
     }
 
@@ -94,10 +103,12 @@ const factory = strategy => {
             {this.props.children}
           </Canvas>
           <Fixbox
+            onTransitionEnd={ this.handleTransitionEnd }
             attrs={ this.props.fixboxAttrs }
             ref={ this.fixboxRef }
             classes={ cx( {
-              [theme['Fixbox--open']]: theme['Fixbox--open'] && this.state.isOpen
+              [theme['Fixbox--open']]: theme['Fixbox--open'] && this.state.isOpen,
+              [theme['Fixbox--transitioning']]: this.state.isFixboxTransitioning && theme['Fixbox--transitioning']
             } ) }
             styles={
               this.state.isMounted
