@@ -121,7 +121,6 @@ class Dashboard extends React.Component {
             </div>
           </div>
         </header>
-        <div id={ pageTheme.foo } />
       </>
     );
   }
