@@ -2,7 +2,7 @@
   "name": "navpush",
   "version": "0.0.1",
   "description": "",
-  "author": "nicholasray",
+  "author": "Nicholas Ray",
   "license": "MIT",
   "repository": "nicholasray/navpush",
   "main": "dist/index.js",
