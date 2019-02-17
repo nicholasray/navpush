@@ -1,5 +1,3 @@
 import setup from '../Container';
 
-const Container = setup( 'Canvas' );
-
-export default Container;
+export default setup('Canvas');
