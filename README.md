@@ -30,8 +30,8 @@ class App extends Component {
     return (
       <PushRight
         fixbox={ ( isOpen, toggle ) => {
-          // for any of the off-canvas animations, you will need to place your
-          // fixed elements inside the fixbox render prop
+          // For any of the off-canvas animations, you will need to place your
+          // fixed elements inside the fixbox render prop.
           return (
             <header>
               <a className="logo" href="/">
@@ -40,14 +40,14 @@ class App extends Component {
               {
                 // The exported Hamburger component is added for convenience, but you can use whatever
                 // component you would like to trigger the open menu as long
-                // as it calls the toggle callback
+                // as it calls the toggle callback.
               }
               <Hamburger onClick={ toggle } />
             </header>
           );
         } }
         nav={ ( isOpen, toggle ) => {
-          // place all your nav content here. You can also include a close
+          // Place all your nav content here. You can also include a close
           // button and pass it the toggle callback to close the menu.
           return (
             <div>
@@ -68,7 +68,7 @@ class App extends Component {
         } }
       >
         {( isOpen, toggle ) => {
-          // Place your page's content (elements that are not fixed) as children
+          // Place your page's content (elements that are not fixed) as children.
           return <section className="hero">Hello World!</section>;
         }}
       </PushRight>
