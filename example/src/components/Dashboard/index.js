@@ -63,7 +63,10 @@ class Dashboard extends React.Component {
 
   handleNameClick( name ) {
     this.setState( {
-      name
+      name,
+      direction: this.components[name][this.state.direction]
+        ? this.state.direction
+        : Object.keys( this.components[name] )[0]
     } );
   }
 
