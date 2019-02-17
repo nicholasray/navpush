@@ -17,35 +17,41 @@ npm install --save navpush
 ## Example
 
 ```jsx
+
 import React, { Component } from 'react';
 
-import 'navpush/styles/Hamburger.css';
-import 'navpush/styles/PushRight.css';
+import 'navpush/dist/styles/Hamburger.css';
+import 'navpush/dist/styles/PushRight.css';
 import { PushRight, Hamburger } from 'navpush';
 
-class ExampleSite extends Component {
+class App extends Component {
   render() {
+    // navpush should go at the top of your body
     return (
-      <html>
-        <body>
-          {
-            // navpush should go at the top of your body
-          }
-          <PushRight
-            fixbox={ ( isOpen, toggle ) => (
-              <div>
-                <a className="logo" href="/">
-                  Name of site
-                </a>
-                {
-                  // Hamburger is added for convenience, but you can use whatever
-                  // component you would like to trigger the open menu as long
-                  // as you call the toggle function
-                }
-                <Hamburger onClick={ toggle } />
-              </div>
-            ) }
-            nav={ ( isOpen, toggle ) => (
+      <PushRight
+        fixbox={ ( isOpen, toggle ) => {
+          // for any of the off-canvas animations, you will need to place your
+          // fixed elements inside the fixbox render prop
+          return (
+            <header>
+              <a className="logo" href="/">
+                Name of site
+              </a>
+              {
+                // The exported Hamburger component is added for convenience, but you can use whatever
+                // component you would like to trigger the open menu as long
+                // as it calls the toggle callback
+              }
+              <Hamburger onClick={ toggle } />
+            </header>
+          );
+        } }
+        nav={ ( isOpen, toggle ) => {
+          // place all your nav content here. You can also include a close
+          // button and pass it the toggle callback to close the menu.
+          return (
+            <div>
+              <button className="CloseBtn" onClick={ toggle } />
               <ul>
                 <li>
                   <a href="/Features">Features</a>
@@ -57,20 +63,20 @@ class ExampleSite extends Component {
                   <a href="/Contact">Contact</a>
                 </li>
               </ul>
-            ) }
-          >
-            {
-              // Place your page's content as a child of navpush
-            }
-            <section className="hero">Hello World!</section>
-          </PushRight>
-        </body>
-      </html>
+            </div>
+          );
+        } }
+      >
+        {( isOpen, toggle ) => {
+          // Place your page's content (elements that are not fixed) as children
+          return <section className="hero">Hello World!</section>;
+        }}
+      </PushRight>
     );
   }
 }
 
-export default ExampleSite;
+export default App;
 ```
 
 ## Styling
@@ -81,62 +87,33 @@ them to the relevant component(s) as props. Here is an example of using the
 `Hamburger` and `PushRight` themes
 
 ```jsx
-
 import React, { Component } from 'react';
 
-import HamburgerTheme from 'navpush/styles/Hamburger.module.scss';
-import PushRightTheme from 'navpush/styles/PushRight.module.scss';
-import { PushRight, Hamburger } from 'navpush';
+import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
+import Theme from 'navpush/dist/styles/PushRight.module.scss';
+import { OverlayLeft, Hamburger } from 'navpush';
 
-class ExampleSite extends Component {
+class App extends Component {
   render() {
     return (
-      <html>
-        <body>
-          {
-            // navpush should go at the top of your body
-          }
-          <PushRight
-            theme={ PushRightTheme }
-            fixbox={ ( isOpen, toggle ) => (
-              <div>
-                <a className="logo" href="/">
-                  Name of site
-                </a>
-                {
-                  // Hamburger is added for convenience, but you can use whatever
-                  // component you would like to trigger the open menu as long
-                  // as you call the toggle function
-                }
-                <Hamburger theme={ HamburgerTheme } onClick={ toggle } />
-              </div>
-            ) }
-            nav={ ( isOpen, toggle ) => (
-              <ul>
-                <li>
-                  <a href="/Features">Features</a>
-                </li>
-                <li>
-                  <a href="/About">About</a>
-                </li>
-                <li>
-                  <a href="/Contact">Contact</a>
-                </li>
-              </ul>
-            ) }
-          >
-            {
-              // Place your page's content as a child of navpush
-            }
-            <section className="hero">Hello World!</section>
-          </PushRight>
-        </body>
-      </html>
+      <OverlayLeft
+        theme={ Theme }
+        nav={ ( isOpen, toggle ) => <div>Sidebar content</div> }
+      >
+        {( isOpen, toggle ) => (
+          <div>
+            <header>
+              <Hamburger theme={ HamburgerTheme } onClick={ toggle } />
+            </header>
+            <section className="hero">Hello World!</section>;
+          </div>
+        )}
+      </OverlayLeft>
     );
   }
 }
 
-export default ExampleSite;
+export default App;
 ```
 
 ## License
