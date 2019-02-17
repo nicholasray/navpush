@@ -1,4 +1,4 @@
-$color: #fff !default;
+$background: #fff !default;
 $padding: 10px;
 
 .Hamburger {
@@ -21,7 +21,7 @@ $padding: 10px;
   left: 0;
   height: 4px;
   width: 100%;
-  background: $color;
+  background: $background;
 }
 
 .Hamburger__top {

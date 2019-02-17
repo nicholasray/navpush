@@ -1,4 +1,4 @@
-import setup from '../ContainerHOC';
+import setup from '../Container';
 import PropTypes from 'prop-types';
 
 const Container = setup( 'Overlay' );

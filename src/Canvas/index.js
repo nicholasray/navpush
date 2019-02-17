@@ -1,4 +1,4 @@
-import setup from '../ContainerHOC';
+import setup from '../Container';
 
 const Container = setup( 'Canvas' );
 
