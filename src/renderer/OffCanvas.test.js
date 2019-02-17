@@ -2,9 +2,10 @@ import React from 'react';
 import { render, fireEvent, cleanup } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import Hamburger from '../Hamburger';
-import setup from './index';
+import setup from '../Factory';
 import Nav from '../Nav';
 import Fixbox from '../Fixbox';
+import OffCanvas from './OffCanvas';
 let props;
 
 beforeEach( () => {
@@ -28,11 +29,14 @@ afterEach( cleanup );
 describe( 'when theme is not passed', () => {
   it( 'renders default classnames when opened and closed', () => {
     const NavPush = setup( {
-      direction: 'foo'
+      direction: 'foo',
+      renderer: OffCanvas
     } );
     const { getByTestId } = render(
       <NavPush { ...props }>
-        <div>body</div>
+        {() => (
+          <div>body</div>
+        )}
       </NavPush>
     );
     const assertClosed = () => {
@@ -81,7 +85,8 @@ describe( 'when theme is not passed', () => {
 describe( 'when theme is passed', () => {
   it( 'renders theme classnames when opened and closed', () => {
     const NavPush = setup( {
-      direction: 'foo'
+      direction: 'foo',
+      renderer: OffCanvas
     } );
     const theme = {
       NavPush: 'Foo-NavPush',
@@ -97,7 +102,9 @@ describe( 'when theme is passed', () => {
     };
     const { getByTestId } = render(
       <NavPush { ...props } theme={ theme }>
-        <div>body</div>
+        {() => (
+          <div>body</div>
+        )}
       </NavPush>
     );
 
@@ -150,11 +157,14 @@ describe( 'when theme is passed', () => {
 describe( 'when dim is disabled', () => {
   it( 'overlay is still clickable', () => {
     const NavPush = setup( {
-      direction: 'foo'
+      direction: 'foo',
+      renderer: OffCanvas
     } );
     const { getByTestId, container } = render(
       <NavPush { ...props } dim={ false }>
-        <div>body</div>
+        {() => (
+          <div>body</div>
+        )}
       </NavPush>
     );
     const assertOpen = () => {
@@ -182,6 +192,7 @@ describe( 'when strategy includes inline styles', () => {
     const passedProps = props;
     const NavPush = setup( {
       direction: 'foo',
+      renderer: OffCanvas,
       fixbox: {
         getStyles( { nav, fixbox, props, isOpen } ) {
           if ( !isOpen ) {
@@ -267,7 +278,9 @@ describe( 'when strategy includes inline styles', () => {
     } );
     const { getByTestId } = render(
       <NavPush { ...props }>
-        <div>body</div>
+        {() => (
+          <div>body</div>
+        )}
       </NavPush>
     );
 

@@ -109,39 +109,52 @@ class Dashboard extends React.Component {
     return buttons;
   }
 
+  renderHeader( toggle, pageTheme ) {
+    return (
+      <>
+        <header className={ pageTheme.Fixbox }>
+          <div className="container">
+            <div className={ pageTheme.Fixbox__items }>
+              navpush
+              <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
+            </div>
+          </div>
+        </header>
+        <div id={ pageTheme.foo } />
+      </>
+    );
+  }
+
   render() {
     const pair = this.components[this.state.name][this.state.direction];
     const NavPush = pair.component;
     const theme = pair.theme;
+    const supportsFixbox = NavPush.renderer.propTypes['fixbox'];
 
     return (
       <NavPush
         theme={ theme }
-        fixbox={ ( isOpen, toggle ) => (
-          <>
-            <header className={ pageTheme.Fixbox }>
-              <div className="container">
-                <div className={ pageTheme.Fixbox__items }>
-                  navpush
-                  <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
-                </div>
-              </div>
-            </header>
-            <div id={ pageTheme.foo } />
-          </>
-        ) }
+        fixbox={
+          supportsFixbox &&
+          ( ( isOpen, toggle ) => this.renderHeader( toggle, pageTheme ) )
+        }
         nav={ ( isOpen, toggle ) => (
           <div className={ pageTheme.NavInner }>You can put anything in here</div>
         ) }
       >
-        <section className="hero is-primary is-fullheight">
-          <div className="hero-body">
-            <div className={ cx( 'container', pageTheme.ButtonContainer ) }>
-              <div className="buttons">{this.renderNameOptions()}</div>
-              <div className="buttons">{this.renderDirectionOptions()}</div>
-            </div>
-          </div>
-        </section>
+        {( isOpen, toggle ) => (
+          <>
+            {!supportsFixbox && this.renderHeader( toggle, pageTheme )}
+            <section className="hero is-primary is-fullheight">
+              <div className="hero-body">
+                <div className={ cx( 'container', pageTheme.ButtonContainer ) }>
+                  <div className="buttons">{this.renderNameOptions()}</div>
+                  <div className="buttons">{this.renderDirectionOptions()}</div>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
       </NavPush>
     );
   }

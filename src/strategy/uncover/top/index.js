@@ -1,7 +1,9 @@
 import setup from '../../../Factory';
+import OffCanvas from '../../../renderer/OffCanvas';
 
 export default setup( {
   direction: 'top',
+  renderer: OffCanvas,
   fixbox: {
     getStyles( { nav, props, isOpen } ) {
       if ( !isOpen ) return {};
