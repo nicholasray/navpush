@@ -142,7 +142,6 @@ class Dashboard extends React.Component {
       >
         {( isOpen, toggle ) => (
           <>
-            {!supportsFixbox && this.renderHeader( toggle, pageTheme )}
             <section className="hero is-primary is-fullheight">
               <div className="hero-body">
                 <div className={ cx( 'container', pageTheme.ButtonContainer ) }>
@@ -151,6 +150,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </section>
+            {!supportsFixbox && this.renderHeader( toggle, pageTheme )}
           </>
         )}
       </NavPush>
