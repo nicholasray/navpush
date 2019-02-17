@@ -1,33 +1,16 @@
-import React from 'react';
+import setup from '../ContainerHOC';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
-const Overlay = ( { attrs, classes, styles, onClick, onTouchStart, theme } ) => {
-  return (
-    <div
-      { ...attrs }
-      onTouchStart={ onTouchStart }
-      onClick={ onClick }
-      style={ styles }
-      className={ cx( theme.Overlay, classes ) }
-    />
-  );
-};
+const Container = setup( 'Overlay' );
 
-Overlay.propTypes = {
-  attrs: PropTypes.object,
-  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
-  styles: PropTypes.object,
-  onClick: PropTypes.func,
-  onTouchStart: PropTypes.func,
-  theme: PropTypes.object
-};
+Container.propTypes = Object.assign(
+  {},
+  Container.propTypes,
+  {
+    onClick: PropTypes.func,
+    onTouchStart: PropTypes.func,
 
-Overlay.defaultProps = {
-  theme: {
-    Overlay: 'NP-Overlay'
-  },
-  attrs: {}
-};
+  }
+);
 
-export default Overlay;
+export default Container;

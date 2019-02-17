@@ -1,28 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'classnames';
+import setup from '../ContainerHOC';
 
-const Canvas = ( { attrs, children, theme, styles, classes } ) => {
-  return (
-    <div { ...attrs } style={ styles } className={ cx( theme['Canvas'], classes ) }>
-      {children}
-    </div>
-  );
-};
+const Container = setup( 'Canvas' );
 
-Canvas.propTypes = {
-  attrs: PropTypes.object,
-  theme: PropTypes.object,
-  styles: PropTypes.object,
-  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
-  children: PropTypes.element,
-};
-
-Canvas.defaultProps = {
-  theme: {
-    Canvas: 'NP-Canvas'
-  },
-  attrs: {}
-};
-
-export default Canvas;
+export default Container;

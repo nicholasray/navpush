@@ -55,7 +55,6 @@ class OnCanvas extends React.Component {
               : undefined
           }
           theme={ theme }
-          isActive={ this.props.isOpen }
         />
         <Nav
           attrs={ this.props.navAttrs }
