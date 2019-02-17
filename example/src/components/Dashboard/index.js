@@ -8,7 +8,6 @@ import PushRightTheme from 'navpush/dist/styles/PushRight.module.scss';
 import PushTopTheme from 'navpush/dist/styles/PushTop.module.scss';
 import UncoverLeftTheme from 'navpush/dist/styles/UncoverLeft.module.scss';
 import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
-import UncoverTopTheme from 'navpush/dist/styles/UncoverTop.module.scss';
 import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
 import Button from '../Button';
 import cx from 'classnames';
@@ -23,8 +22,7 @@ function generateComponents() {
     PushRightTheme,
     PushTopTheme,
     UncoverLeftTheme,
-    UncoverRightTheme,
-    UncoverTopTheme
+    UncoverRightTheme
   };
   const strategies = {};
 

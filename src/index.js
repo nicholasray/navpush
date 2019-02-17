@@ -9,7 +9,6 @@ import {
   right as PushRight
 } from './strategy/push';
 import {
-  top as UncoverTop,
   left as UncoverLeft,
   right as UncoverRight
 } from './strategy/uncover';
@@ -24,6 +23,5 @@ export {
   PushRight,
   PushTop,
   UncoverLeft,
-  UncoverRight,
-  UncoverTop
+  UncoverRight
 };
