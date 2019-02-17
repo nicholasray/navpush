@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Nav from '../Nav';
 import Overlay from '../Overlay';
 import cx from 'classnames';
@@ -79,26 +78,7 @@ class OnCanvas extends React.Component {
   }
 }
 
-OnCanvas.propTypes = {
-  dim: PropTypes.bool,
-  nav: PropTypes.func.isRequired,
-  navAttrs: PropTypes.object,
-  overlayAttrs: PropTypes.object,
-  theme: PropTypes.object.isRequired,
-};
-
-OnCanvas.defaultProps = {
-  dim: true,
-  theme: Object.assign(
-    {
-      NavPush: 'NP-NavPush',
-      'NavPush--open': 'NP-NavPush--open',
-      'Nav--open': 'NP-Nav--open',
-      'Overlay--open': `NP-Overlay--open`,
-    },
-    Nav.defaultProps.theme,
-    Overlay.defaultProps.theme
-  )
-};
+OnCanvas.propTypes = {};
+OnCanvas.defaultProps = {};
 
 export default OnCanvas;

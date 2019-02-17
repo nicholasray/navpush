@@ -142,32 +142,20 @@ class OffCanvas extends React.Component {
 }
 
 OffCanvas.propTypes = {
-  dim: PropTypes.bool,
   canvasAttrs: PropTypes.object,
-  fixboxAttrs: PropTypes.object,
   fixbox: PropTypes.func.isRequired,
-  nav: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
-  navAttrs: PropTypes.object,
-  overlayAttrs: PropTypes.object,
+  fixboxAttrs: PropTypes.object,
   strategy: PropTypes.object.isRequired
 };
 
 OffCanvas.defaultProps = {
-  dim: true,
   theme: Object.assign(
     {
-      NavPush: 'NP-NavPush',
-      'NavPush--open': 'NP-NavPush--open',
       'Fixbox--open': 'NP-Fixbox--open',
-      'Nav--open': 'NP-Nav--open',
-      'Overlay--open': `NP-Overlay--open`,
       'Canvas--open': 'NP-Canvas--open'
     },
     Fixbox.defaultProps.theme,
-    Canvas.defaultProps.theme,
-    Nav.defaultProps.theme,
-    Overlay.defaultProps.theme
+    Canvas.defaultProps.theme
   )
 };
 

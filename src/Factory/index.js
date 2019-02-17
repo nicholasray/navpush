@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Nav from '../Nav';
+import Overlay from '../Overlay';
 
 const factory = strategy => {
   class NavPush extends React.Component {
@@ -45,6 +48,31 @@ const factory = strategy => {
 
   NavPush.direction = strategy.direction;
   NavPush.renderer = strategy.renderer;
+
+  NavPush.propTypes = Object.assign( {
+    dim: PropTypes.bool,
+    navAttrs: PropTypes.object,
+    overlayAttrs: PropTypes.object,
+    nav: PropTypes.func.isRequired,
+    theme: PropTypes.object.isRequired,
+  },
+  strategy.propTypes
+  );
+
+  NavPush.defaultProps = {
+    dim: true,
+    theme: Object.assign(
+      {
+        NavPush: 'NP-NavPush',
+        'NavPush--open': 'NP-NavPush--open',
+        'Nav--open': 'NP-Nav--open',
+        'Overlay--open': `NP-Overlay--open`,
+      },
+      Nav.defaultProps.theme,
+      Overlay.defaultProps.theme,
+      strategy.renderer.defaultProps.theme
+    )
+  };
 
   return NavPush;
 };
