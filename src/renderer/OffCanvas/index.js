@@ -72,7 +72,7 @@ class OffCanvas extends React.Component {
         } ) }
       >
         <Canvas
-          attrs={ this.props.canvasAttrs }
+          { ...this.props.canvasAttrs }
           classes={ cx( {
             [theme['Canvas--open']]:
                 theme['Canvas--open'] && this.props.isOpen
@@ -87,8 +87,8 @@ class OffCanvas extends React.Component {
           {this.props.children( this.props.isOpen, this.props.onToggle )}
         </Canvas>
         <Fixbox
+          { ...this.props.fixboxAttrs }
           onTransitionEnd={ this.handleTransitionEnd }
-          attrs={ this.props.fixboxAttrs }
           ref={ this.fixboxRef }
           classes={ cx( {
             [theme['Fixbox--open']]: theme['Fixbox--open'] && this.props.isOpen,
@@ -104,9 +104,9 @@ class OffCanvas extends React.Component {
           {this.props.fixbox( this.props.isOpen, this.props.onToggle )}
         </Fixbox>
         <Overlay
+          { ...this.props.overlayAttrs }
           onTouchStart={ this.props.isOpen ? this.props.onToggle : undefined }
           onClick={ this.props.isOpen ? this.props.onToggle : undefined }
-          attrs={ this.props.overlayAttrs }
           classes={ cx( {
             [theme['Overlay--dim']]: theme['Overlay--dim'] && this.props.dim,
             [theme['Overlay--open']]:
@@ -120,7 +120,7 @@ class OffCanvas extends React.Component {
           theme={ theme }
         />
         <Nav
-          attrs={ this.props.navAttrs }
+          { ...this.props.navAttrs }
           ref={ this.navRef }
           classes={ cx( {
             [theme['Nav--open']]:

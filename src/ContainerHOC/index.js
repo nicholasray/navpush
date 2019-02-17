@@ -19,11 +19,10 @@ function setup( name ) {
     }
 
     render() {
-      const { attrs, theme, styles, classes, children } = this.props;
+      const { theme, styles, classes, children } = this.props;
 
       return (
         <div
-          { ...attrs }
           ref={ this.ref }
           style={ styles }
           className={ cx( theme[name], classes ) }
@@ -36,7 +35,6 @@ function setup( name ) {
   }
 
   Container.propTypes = {
-    attrs: PropTypes.object,
     theme: PropTypes.object,
     styles: PropTypes.object,
     classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
@@ -46,8 +44,7 @@ function setup( name ) {
   Container.defaultProps = {
     theme: {
       [name]: `NP-${name}`
-    },
-    attrs: {}
+    }
   };
 
   return Container;

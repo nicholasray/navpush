@@ -41,9 +41,9 @@ class OnCanvas extends React.Component {
       >
         {this.props.children( this.props.isOpen, this.props.onToggle )}
         <Overlay
+          { ...this.props.overlayAttrs }
           onTouchStart={ this.props.isOpen ? this.props.onToggle : undefined }
           onClick={ this.props.isOpen ? this.props.onToggle : undefined }
-          attrs={ this.props.overlayAttrs }
           classes={ cx( {
             [theme['Overlay--dim']]: theme['Overlay--dim'] && this.props.dim,
             [theme['Overlay--open']]:
@@ -57,7 +57,7 @@ class OnCanvas extends React.Component {
           theme={ theme }
         />
         <Nav
-          attrs={ this.props.navAttrs }
+          { ...this.props.navAttrs }
           ref={ this.navRef }
           classes={ cx( {
             [theme['Nav--open']]:
