@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from '../Nav';
-import Overlay from '../Overlay';
+import Nav from '../../Nav';
+import Overlay from '../../Overlay';
 import cx from 'classnames';
 
 class OnCanvas extends React.Component {

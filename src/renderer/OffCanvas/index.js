@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Nav from '../Nav';
-import Fixbox from '../Fixbox';
-import Canvas from '../Canvas';
-import Overlay from '../Overlay';
+import Nav from '../../Nav';
+import Fixbox from '../../Fixbox';
+import Canvas from '../../Canvas';
+import Overlay from '../../Overlay';
 import cx from 'classnames';
 
 class OffCanvas extends React.Component {
