@@ -12,10 +12,10 @@ const Canvas = ( { attrs, children, theme, styles, classes } ) => {
 
 Canvas.propTypes = {
   attrs: PropTypes.object,
-  children: PropTypes.element,
   theme: PropTypes.object,
   styles: PropTypes.object,
-  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] )
+  classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
+  children: PropTypes.element,
 };
 
 Canvas.defaultProps = {

@@ -31,9 +31,9 @@ class Nav extends React.Component {
 Nav.propTypes = {
   attrs: PropTypes.object,
   theme: PropTypes.object,
-  children: PropTypes.element,
+  styles: PropTypes.object,
   classes: PropTypes.oneOfType( [ PropTypes.array, PropTypes.string ] ),
-  styles: PropTypes.object
+  children: PropTypes.element,
 };
 
 Nav.defaultProps = {
