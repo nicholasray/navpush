@@ -13,6 +13,8 @@
 npm install --save navpush
 ```
 
+`react`, `react-dom`, and `prop-types` are peerDependencies.
+
 ## Example
 
 ```jsx
