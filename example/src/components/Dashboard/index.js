@@ -11,6 +11,8 @@ import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
 import Button from '../Button';
 import cx from 'classnames';
 import pageTheme from './styles.module.scss';
+import Github from 'react-github-button';
+import 'react-github-button/assets/style.css';
 
 function generateComponents() {
   const themes = {
@@ -148,6 +150,14 @@ class Dashboard extends React.Component {
                 <div className={ cx( 'container', pageTheme.ButtonContainer ) }>
                   <div className="buttons">{this.renderNameOptions()}</div>
                   <div className="buttons">{this.renderDirectionOptions()}</div>
+                  <div className={ pageTheme.Github }>
+                    <Github
+                      type="stargazers"
+                      size="large"
+                      namespace="nicholasray"
+                      repo="navpush"
+                    />
+                  </div>
                 </div>
               </div>
             </section>
