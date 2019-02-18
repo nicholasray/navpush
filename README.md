@@ -82,7 +82,15 @@ export default App;
 
 ## Styling
 
-[CSS Modules](https://github.com/css-modules/css-modules) are supported by
+Regular CSS files are provided in the `dist`` folder for each component that you
+can import:
+
+```jsx
+import 'navpush/dist/styles/Hamburger.css';
+import 'navpush/dist/styles/PushRight.css';
+```
+
+[CSS Modules](https://github.com/css-modules/css-modules) are also supported by
 importing the `navpush/styles/*.module.scss` files of your choice and passing
 them to the relevant component(s) as `theme` props. Here is an example of using the
 `Hamburger` and `OverlayLeft` themes
@@ -116,7 +124,6 @@ class App extends Component {
 
 export default App;
 ```
-
 ## License
 
 MIT
