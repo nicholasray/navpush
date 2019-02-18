@@ -21,7 +21,6 @@
     "prop-types": "^15.6.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-github-button": "^0.1.11",
     "react-helmet": "^5.2.0",
     "typeface-aleo": "0.0.44",
     "typeface-roboto": "0.0.54"
