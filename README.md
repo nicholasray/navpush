@@ -32,7 +32,7 @@ class App extends Component {
       <PushRight
         fixbox={ ( isOpen, toggle ) => {
           // For any of the off-canvas animations, you will need to place your
-          // fixed elements inside the fixbox render prop.
+          // fixed elements inside the fixbox render prop as shown here.
           return (
             <header>
               <a className="logo" href="/">
