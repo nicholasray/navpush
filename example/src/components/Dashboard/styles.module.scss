@@ -1,4 +1,19 @@
-.Fixbox__items {
+@import '../Layout/variables.scss';
+
+$lineColor: $secondary;
+
+@import '~navpush/dist/styles/Hamburger.module.scss';
+
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Header__items {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,11 +30,4 @@
 
 .NavInner {
   padding: 50px;
-}
-
-.Fixbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
 }

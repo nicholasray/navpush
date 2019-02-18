@@ -1,0 +1,12 @@
+$family-sans-serif: 'Roboto', sans-serif;
+$family-heading: 'Aleo';
+
+// Update some of Bulma's component variables
+$primary: #abc5d4;
+$secondary: darken($primary, 45%);
+$body-color: $secondary;
+$button-color: $secondary;
+$button-active-color: $secondary;
+$button-border-color: none;
+$button-hover-border-color: none;
+$button-active-border-color: $secondary;

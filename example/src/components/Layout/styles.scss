@@ -1,24 +1,11 @@
-// Set your brand colors
-$purple: #8a4d76;
-$pink: #fa7c91;
-$brown: #757763;
-$beige-light: #d0d1cd;
-$beige-lighter: #eff0eb;
+@import './variables.scss';
 
-// Update Bulma's global variables
-$family-sans-serif: 'Roboto', sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$link: $pink;
-
-// Update some of Bulma's component variables
-$primary: #d0d2e0;
-$body-background-color: #fff;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;
-
-$family-heading: 'Aleo';
+@import 'bulma/sass/utilities/_all.sass';
+@import 'bulma/sass/base/_all.sass';
+@import 'bulma/sass/elements/title.sass';
+@import 'bulma/sass/layout/hero.sass';
+@import 'bulma/sass/elements/container.sass';
+@import 'bulma/sass/elements/button.sass';
 
 h1,
 h2,
@@ -29,9 +16,17 @@ h6 {
   font-family: $family-heading;
 }
 
-@import 'bulma/sass/utilities/_all.sass';
-@import 'bulma/sass/base/_all.sass';
-@import 'bulma/sass/elements/title.sass';
-@import 'bulma/sass/layout/hero.sass';
-@import 'bulma/sass/elements/container.sass';
-@import 'bulma/sass/elements/button.sass';
+.button {
+  box-shadow: 0 5px 7px rgba(50, 50, 93, 0.11), 0 2px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(50, 50, 93, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0px);
+    box-shadow: 0 5px 7px rgba(50, 50, 93, 0.11), 0 2px 3px rgba(0, 0, 0, 0.08);
+  }
+}

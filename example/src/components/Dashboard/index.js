@@ -8,7 +8,6 @@ import PushRightTheme from 'navpush/dist/styles/PushRight.module.scss';
 import PushTopTheme from 'navpush/dist/styles/PushTop.module.scss';
 import UncoverLeftTheme from 'navpush/dist/styles/UncoverLeft.module.scss';
 import UncoverRightTheme from 'navpush/dist/styles/UncoverRight.module.scss';
-import HamburgerTheme from 'navpush/dist/styles/Hamburger.module.scss';
 import Button from '../Button';
 import cx from 'classnames';
 import pageTheme from './styles.module.scss';
@@ -113,11 +112,11 @@ class Dashboard extends React.Component {
   renderHeader( toggle, pageTheme ) {
     return (
       <>
-        <header className={ pageTheme.Fixbox }>
+        <header className={ pageTheme.Header }>
           <div className="container">
-            <div className={ pageTheme.Fixbox__items }>
+            <div className={ pageTheme.Header__items }>
               navpush
-              <navpush.Hamburger onClick={ toggle } theme={ HamburgerTheme } />
+              <navpush.Hamburger onClick={ toggle } theme={ pageTheme } />
             </div>
           </div>
         </header>

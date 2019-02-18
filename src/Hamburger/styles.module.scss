@@ -1,5 +1,8 @@
-$background: #fff !default;
-$padding: 10px;
+$lineHeight: 4px !default;
+$lineColor: #fff !default;
+$padding: 10px !default;
+$innerWidth: 30px !default;
+$innerHeight: 24px !default;
 
 .Hamburger {
   display: block;
@@ -12,16 +15,16 @@ $padding: 10px;
 .Hamburger__line-container {
   display: block;
   position: relative;
-  width: 30px;
-  height: 24px;
+  width: $innerWidth;
+  height: $innerHeight;
 }
 
 .Hamburger__line {
   position: absolute;
   left: 0;
-  height: 4px;
+  height: $lineHeight;
   width: 100%;
-  background: $background;
+  background: $lineColor;
 }
 
 .Hamburger__top {
